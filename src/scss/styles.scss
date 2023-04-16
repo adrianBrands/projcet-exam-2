@@ -1,9 +1,16 @@
+$primary:rgba(0, 0, 0, 0.3);
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body, html {
   height: 100%;
   margin: 0;
 }
+
 @import "./header.scss";
 @import "./footer.scss";
 @import "./background.scss";
+@import "./home.scss";
+
+/*.test{
+  background-color: rgba(0, 0, 0, 0.2);
+}*/

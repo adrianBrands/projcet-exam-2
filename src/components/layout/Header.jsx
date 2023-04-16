@@ -5,7 +5,7 @@ import Logo from "../../images/holidaze1.png"
 
 export default function Header() {
   return (
-    <Navbar collapseOnSelect expand="lg" className="border-bottom border-primary d-flex">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="border-bottom border-primary d-flex" sticky="top">
       <Navbar.Brand className="ms-3"  href="#home">
         <img
               src={Logo}
