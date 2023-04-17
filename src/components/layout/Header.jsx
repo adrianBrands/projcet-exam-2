@@ -1,12 +1,13 @@
-import { Button, Container, Nav, Navbar, NavbarBrand, NavDropdown } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavbarBrand, Dropdown } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../../images/holidaze1.png"
+import { FaUserAlt } from "react-icons/fa";
 
 
 export default function Header() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="border-bottom border-primary d-flex" sticky="top">
-      <Navbar.Brand className="ms-3"  href="#home">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className=" border-primary d-flex shadow-sm" sticky="top">
+      <Navbar.Brand className="ms-3"  href="/">
         <img
               src={Logo}
               width="250"
@@ -21,11 +22,19 @@ export default function Header() {
           <Nav.Link to="/" as={NavLink}>Home</Nav.Link>
           <Nav.Link to="/venues" as={NavLink}>Venues</Nav.Link>
         </Nav>
-        <Nav className="me-3">
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
-          </Nav.Link>
+        <Nav className="me-3 align-items-center">
+          
+          
+          <Dropdown className="dropstart">
+      <Dropdown.Toggle  variant="" id="dropdown-basic">
+        <FaUserAlt className="userIcon"/>
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu  variant="dark">
+        <Dropdown.Item href="/Register">Register</Dropdown.Item>
+        <Dropdown.Item href="/Sign-in">Sign in</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

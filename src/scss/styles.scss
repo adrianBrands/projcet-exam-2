@@ -1,9 +1,25 @@
-$primary:rgba(0, 0, 0, 0.3);
+//$primary:rgba(0, 0, 0, 0.3);
+$primary:#eb5555;
+
+
+
+
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+.btn-primary{
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color:#fff;
+}
 
 body, html {
   height: 100%;
   margin: 0;
+}
+
+.userIcon{
+  margin-bottom: 0;
+  font-size: 30px;
 }
 
 @import "./header.scss";
