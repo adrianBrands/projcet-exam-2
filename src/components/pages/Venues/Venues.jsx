@@ -1,3 +1,9 @@
+import UseVenues from "../../../hooks/useVenues"
+
 export default function Venues(){
-  return <div>Venues</div>
+  return (
+    <UseVenues />
+   )
+    
+  
 }
