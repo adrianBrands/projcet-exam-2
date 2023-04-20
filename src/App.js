@@ -1,5 +1,5 @@
 import { Header, Footer } from "./components";
-import { Home, Venues } from "./components/pages";
+import { Home, Venues, VenueById } from "./components/pages";
 import { Routes, Route } from "react-router-dom";
 
 
@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/venues" element={<Venues />}/>
+        <Route path="/venue/:id" element={<VenueById />}/>
       </Routes>
       <Footer/>
     </>
