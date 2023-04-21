@@ -1,6 +1,7 @@
 import { Container, Col, Row, Image, Card, Stack, Button, Carousel, CarouselItem } from "react-bootstrap";
 import defaultImage from "../../images/window-g12c04a259_1920.jpg";
 import { FaCar, FaDog, FaLaptopCode, FaUtensils } from "react-icons/fa";
+import Calendar from "../forms/calendar";
 
 export default function VenueById(data){
   return (
@@ -57,6 +58,7 @@ export default function VenueById(data){
             </Card.Body>
           </Card>
           <Stack gap={2} className="col-md-5 mx-auto mt-3">
+          <Calendar />
             <Button className="mb-5"  variant="outline-primary" size="lg">Reserve</Button>
           </Stack>
         </Col>

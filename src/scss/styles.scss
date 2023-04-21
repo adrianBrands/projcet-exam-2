@@ -22,6 +22,9 @@ body, html {
   font-size: 30px;
 }
 
+@import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+@import "react-datepicker/dist/react-datepicker.css";
+
 @import "./header.scss";
 @import "./footer.scss";
 @import "./background.scss";
@@ -29,5 +32,7 @@ body, html {
 @import "./card.scss";
 @import "./search.scss";
 @import "./carousel.scss";
+@import "./calendar.scss";
+
 
 
