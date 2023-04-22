@@ -4,7 +4,7 @@ import UseVenues from "../../../hooks/useVenues"
 export default function Venues(){
   return (
     <Container>
-      <h1 className="border-bottom">Venues</h1>
+      <h1 className="border-bottom mt-5">Venues</h1>
       <UseVenues/>
     </Container>
    )

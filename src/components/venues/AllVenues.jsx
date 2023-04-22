@@ -52,7 +52,7 @@ export default function AllVenues(venues) {
             <Card.Body>
               <Card.Title className="border-bottom mt-2">{venue.name}</Card.Title>
               <div className="d-flex  align-items-center justify-content-between">
-                <Card.Text>{venue.price} kr NOK</Card.Text>
+                <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
                 <Card.Text>Guests: {venue.maxGuests}</Card.Text>
               </div>
             </Card.Body>
