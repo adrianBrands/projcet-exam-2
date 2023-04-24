@@ -1,5 +1,5 @@
-import { Button, Container, Nav, Navbar, NavbarBrand, Dropdown } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { Nav, Navbar, Dropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import Logo from "../../images/holidaze1.png"
 import { FaUserAlt } from "react-icons/fa";
 import LoggedIn from "../profile/IsLoggedIn";

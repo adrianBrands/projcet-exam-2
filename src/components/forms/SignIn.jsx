@@ -28,7 +28,7 @@ export default function SignInUser(){
   const [signInError, setSignInError] = useState(null);
   const [auth, setAuth] = useContext(AuthContext);
 
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
   async function onSubmit(data){
     setSubmitting(true);
     setSignInError(null);
@@ -38,8 +38,7 @@ export default function SignInUser(){
     try{
       const response = await axios.post(signInURL, data);
       console.log(response.data);
-      console.log(setAuth(response.data))
-      //navigate('/Sign-in')
+      navigate('/profile')
     } catch (error) {
       console.log("error", error.response.data.errors[0].message);
       setSignInError(error.response.data.errors[0].message.toString());
