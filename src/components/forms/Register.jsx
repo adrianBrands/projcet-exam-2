@@ -3,35 +3,52 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import axios from "axios";
 import { authRegisterURL } from "../../utilities/constants";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const emailRegex = /^[\w\-.]+@(stud.)?noroff.no$/;
 const schema = yup.object().shape({
   name: yup.string().min(3).required(),
   email: yup.string().matches(emailRegex, "Invalid email.").required(),
-  url: yup.string().url("invalid url").required(),
+  avatar: yup.string().url("invalid url").required(),
+  //venueManager: yup.boolean().oneOf([true]).notRequired(),
   password: yup.string().min(8).required(),
 });
 
+/*testUser: 
+username: addyB
+email: addyB@noroff.no
+avatar: https://gravatar.com/avatar/63e0639bb8d217fe96e4f7c6ccb886b0?s=400&d=robohash&r=x
+password: 896734jdlmjd846h
+*/
+
+
+
 export default function RegisterUser(){
   const [submitting ,setSubmitting] = useState(false);
-  const [signInError, setSignInError] = useState(null);
+  const [registerError, setRegisterError] = useState(null);
+  
 
+  const navigate = useNavigate()
   async function onSubmit(data){
     setSubmitting(true);
-    setSignInError(null);
+    setRegisterError(null);
 
     try{
       const response = await axios.post(authRegisterURL, data);
       console.log(response.data)
+      navigate('/Sign-in')
     } catch (error) {
-      console.log("error", error);
-      setSignInError(error.toString());
+      console.log("error", error.response.data.errors[0].message);
+      setRegisterError(error.response.data.errors[0].message.toString());
     } finally {
       setSubmitting(false)
     }
 
+
   }
+  
 
 return (
   <Formik
@@ -40,14 +57,15 @@ return (
       initialValues={{
         name: '',
         email: '',
-        url: '',
+        avatar: '',
+        venueManager: false,
         password: '',
       }}
     >
       {({
         handleSubmit,
         handleChange,
-        handleBlur,
+        handleBlur,  
         values,
         touched,
         isValid,
@@ -55,6 +73,7 @@ return (
       }) => (
       
       <Container className="mt-5 mb-5">
+        <p className="text-danger fs-5">{registerError ? registerError + " please try again" : null}</p>
         <Form className="mt-3" noValidate onSubmit={handleSubmit}>
           <Form.Group controlId="validationFormik01">
             <FloatingLabel controlId="floatingInputName" label="name"  className="mb-3">
@@ -71,10 +90,13 @@ return (
           </Form.Group>
           <Form.Group>
             <FloatingLabel controlId="floatingInputProfileImage" label="Profile image URL" className="mb-3">
-            <Form.Control type="url" placeholder="url" name="url" value={values.url} onChange={handleChange} isValid={touched.url && !errors.url} isInvalid={!!errors.url}/>
+            <Form.Control type="url" placeholder="avatar" name="avatar" value={values.avatar} onChange={handleChange} isValid={touched.avatar && !errors.avatar} isInvalid={!!errors.avatar}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
             </FloatingLabel>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Venue manager"  onChange={handleChange} value={values.venueManager}  name="venueManager"/>
           </Form.Group>
           <Form.Group>
             <FloatingLabel controlId="floatingInputPassword" label="Password" className="mb-3">
@@ -84,7 +106,7 @@ return (
             </FloatingLabel>
           </Form.Group>
           <Button variant="primary" type="submit">
-          {submitting ? "Signing in..." : "Sign in"}
+          {submitting ? "Signing in..." : "Register"}
           </Button>
         </Form>
       </Container>
