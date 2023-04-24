@@ -2,9 +2,14 @@ import { Button, Container, Nav, Navbar, NavbarBrand, Dropdown } from "react-boo
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../../images/holidaze1.png"
 import { FaUserAlt } from "react-icons/fa";
+import LoggedIn from "../profile/IsLoggedIn";
+
 
 
 export default function Header() {
+  
+
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className=" border-primary d-flex shadow-sm" sticky="top">
       <Navbar.Brand className="ms-3"  href="/">
@@ -23,18 +28,14 @@ export default function Header() {
           <Nav.Link to="/venues" as={NavLink}>Venues</Nav.Link>
         </Nav>
         <Nav className="me-3 align-items-center">
-          
-          
           <Dropdown className="dropstart">
-      <Dropdown.Toggle  variant="" id="dropdown-basic">
-        <FaUserAlt className="userIcon"/>
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu  variant="dark">
-        <Dropdown.Item href="/Register">Register</Dropdown.Item>
-        <Dropdown.Item href="/Sign-in">Sign in</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+          <Dropdown.Toggle  variant="" id="dropdown-basic">
+            <FaUserAlt className="userIcon"/>
+          </Dropdown.Toggle>
+          
+            <LoggedIn />
+          
+          </Dropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
