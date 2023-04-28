@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function IsLoggedIn(){
   const [items, setItems] = useState([]);
-  //const clear = localStorage.clear();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('auth'));
     if (items) {
@@ -14,7 +15,11 @@ export default function IsLoggedIn(){
 
    function removeItem() {
     localStorage.removeItem("auth");
+    navigate('/');
+    navigate(0)
   }
+
+
 
   if (items.name){
     return (
@@ -23,7 +28,7 @@ export default function IsLoggedIn(){
         <Dropdown.Item onClick={removeItem}>Sign out</Dropdown.Item>
       </Dropdown.Menu>
     )
-  } else {
+  } else if (!items.name) {
     return (
       <Dropdown.Menu variant="dark">
         <Dropdown.Item href="/Register">Register</Dropdown.Item>

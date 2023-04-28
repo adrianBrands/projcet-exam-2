@@ -44,10 +44,11 @@ export default function AllVenues(venues) {
         {filter.map((venue) => (
         <Col key={venue.id}>
           <Card className="venueCard h-100">
-            <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.media[0]} 
+            <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.media[0] ? venue.media[0] : defaultImage} 
               onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.src=defaultImage;}} 
+              
             />
             <Card.Body>
               <Card.Title className="border-bottom mt-2">{venue.name}</Card.Title>
