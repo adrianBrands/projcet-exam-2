@@ -7,13 +7,13 @@ import { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-const emailRegex = /^[\w\-.]+@(stud.)?noroff.no$/;
+
 const schema = yup.object().shape({
   name: yup.string().min(3).required(),
-  email: yup.string().matches(emailRegex, "Invalid email.").required(),
-  avatar: yup.string().url("invalid url").required(),
+  description: yup.string().required(),
+  media: yup.string().url("invalid url").required(),
   //venueManager: yup.boolean().oneOf([true]).notRequired(),
-  password: yup.string().min(8).required(),
+  
 });
 
 /*testUser venueManager:false: 
@@ -34,7 +34,7 @@ password: 3848372hye373dnidh
 
 
 
-export default function RegisterUser(){
+export default function Create(){
   const [submitting ,setSubmitting] = useState(false);
   const [registerError, setRegisterError] = useState(null);
   
@@ -62,13 +62,29 @@ export default function RegisterUser(){
 return (
   <Formik
       validationSchema={schema}
-      onSubmit={onSubmit}
+      onSubmit={console.log}
       initialValues={{
         name: '',
-        email: '',
-        avatar: '',
-        venueManager: false,
-        password: '',
+        description: '',
+        media: [''],
+        price: '',
+        maxGuests: '',
+        rating: '',
+        meta: {
+          wifi: false,
+          parking: false,
+          breakfast: false,
+          pets: false
+        },
+        location: {
+          address: '',
+          city: '',
+          zip: '',
+          country: '',
+          continent: '',
+          lat: '',
+          ing: '',
+        }
       }}
     >
       {({
@@ -92,28 +108,43 @@ return (
             </FloatingLabel>
           </Form.Group>
           <Form.Group>
-            <FloatingLabel controlId="floatingInputEmail" label="Email" className="mb-3">
-              <Form.Control type="email" placeholder="name@example.com" name="email" value={values.email} onChange={handleChange} isValid={touched.email && !errors.email} isInvalid={!!errors.email}/>
-              <Form.Control.Feedback type="invalid">Please provide a valid email address</Form.Control.Feedback>
+            <FloatingLabel controlId="floatingInputDescription" label="Description" className="mb-3">
+              <Form.Control type="text" placeholder="description" name="description" value={values.description} onChange={handleChange} isValid={touched.description && !errors.description} isInvalid={!!errors.description}/>
+              <Form.Control.Feedback type="invalid">Please provide more then 3 characters</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
           <Form.Group>
-            <FloatingLabel controlId="floatingInputProfileImage" label="Profile image URL" className="mb-3">
-            <Form.Control type="url" placeholder="avatar" name="avatar" value={values.avatar} onChange={handleChange} isValid={touched.avatar && !errors.avatar} isInvalid={!!errors.avatar}/>
+            <FloatingLabel controlId="floatingInputImage" label="Venue image" className="mb-3">
+            <Form.Control type="url" placeholder="image" name="media" value={values.media} onChange={handleChange} isValid={touched.media && !errors.media} isInvalid={!!errors.media}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Venue manager"  onChange={handleChange} value={values.venueManager}  name="venueManager"/>
-          </Form.Group>
           <Form.Group>
-            <FloatingLabel controlId="floatingInputPassword" label="Password" className="mb-3">
-            <Form.Control type="password" placeholder="password" name="password" value={values.password} onChange={handleChange} isValid={touched.password && !errors.password} isInvalid={!!errors.password}/>
+            <FloatingLabel controlId="floatingInputPrice" label="Venue price" className="mb-3">
+            <Form.Control type="number" placeholder="price" name="price" value={values.price} onChange={handleChange} isValid={touched.price && !errors.price} isInvalid={!!errors.price}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">Please provide more then 8 characters</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide a valid price</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
+          <Form.Group>
+            <FloatingLabel controlId="floatingInputGuests" label="maxGuests" className="mb-3">
+            <Form.Control type="number" placeholder="guests" name="maxGuests" value={values.maxGuests} onChange={handleChange} isValid={touched.maxGuests && !errors.maxGuests} isInvalid={!!errors.maxGuests}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group>
+            <FloatingLabel controlId="floatingInputRating" label="rating" className="mb-3">
+            <Form.Control type="number" placeholder="rating" name="rating" value={values.rating} onChange={handleChange} isValid={touched.rating && !errors.rating} isInvalid={!!errors.rating}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="wifi"  onChange={handleChange} value={values.meta.wifi} name="meta.wifi"  />
+          </Form.Group>
+          
           <Button variant="primary" type="submit">
           {submitting ? "Signing in..." : "Register"}
           </Button>

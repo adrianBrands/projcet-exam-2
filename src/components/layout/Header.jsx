@@ -3,10 +3,18 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../images/holidaze1.png"
 import { FaUserAlt } from "react-icons/fa";
 import LoggedIn from "../profile/IsLoggedIn";
+import { useEffect, useState } from "react";
 
 
 
 export default function Header() {
+  const [profileImage, setProfileImage] = useState([]);
+  useEffect(() => {
+    const profileImage = JSON.parse(localStorage.getItem('auth'));
+    if (profileImage) {
+     setProfileImage(profileImage);
+    }
+  }, []);
   
 
 
@@ -26,11 +34,15 @@ export default function Header() {
         <Nav className="me-auto">
           <Nav.Link to="/" as={NavLink}>Home</Nav.Link>
           <Nav.Link to="/venues" as={NavLink}>Venues</Nav.Link>
+          <Nav.Link to="/create-venue" as={NavLink}>Create venue</Nav.Link>
         </Nav>
         <Nav className="me-3 align-items-center">
           <Dropdown className="dropstart">
           <Dropdown.Toggle  variant="" id="dropdown-basic">
-            <FaUserAlt className="userIcon"/>
+          {profileImage.avatar ? 
+          <img src={profileImage.avatar} className="rounded-circle" height={60} alt="" />
+          :
+          <FaUserAlt className="userIcon"/>}
           </Dropdown.Toggle>
           
             <LoggedIn />

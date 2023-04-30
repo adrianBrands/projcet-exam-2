@@ -14,3 +14,48 @@
     margin-bottom: 1rem;
   }
 }*/
+
+.venueLink{
+  text-decoration: none;
+  color: #000;
+
+  &:hover {
+    color:#000;
+    
+  }
+}
+
+.venueCard {
+  position: relative;
+  &:hover {
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%) !important;
+    -webkit-transform: scale(1.04);
+    transform: scale(1.04);
+    transition: all 0.5s;
+  
+  }
+
+}
+
+.productsLink{
+  text-decoration: none;
+  color: #FFF;
+
+  &:hover {
+    color: #FFF;
+    font-weight: bolder
+  }
+
+  
+}
+
+.percentage{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+  font-size:22px;
+  
+  
+  
+}

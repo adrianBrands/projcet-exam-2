@@ -43,24 +43,26 @@ export default function AllVenues(venues) {
       <Row md={2} xs={1} lg={4} className="g-3 mt-1">
         {filter.map((venue) => (
         <Col key={venue.id}>
-          <Card className="venueCard h-100">
-            <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.media[0] ? venue.media[0] : defaultImage} 
-              onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src=defaultImage;}} 
-              
-            />
-            <Card.Body>
-              <Card.Title className="border-bottom mt-2">{venue.name}</Card.Title>
-              <div className="d-flex  align-items-center justify-content-between">
-                <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
-                <Card.Text>Guests: {venue.maxGuests}</Card.Text>
-              </div>
-            </Card.Body>
-            <Card.Footer>
-              <Button className="venuesLink" href={`/venue/${venue.id}`}>Book</Button>
-            </Card.Footer>
-          </Card>
+          <Link className="venueLink" to={`/venue/${venue.id}`}>
+            <Card className="venueCard h-100">
+              <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.media[0] ? venue.media[0] : defaultImage} 
+                onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src=defaultImage;}} 
+                
+              />
+              <Card.Body>
+                <Card.Title className="mb-4">{venue.name}</Card.Title>
+                <div className="d-flex  align-items-center justify-content-between">
+                  <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
+                  <Card.Text>Guests: {venue.maxGuests}</Card.Text>
+                </div>
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-center align-items-center">
+                <Button className="venuesLink" href={`/venue/${venue.id}`}>Book</Button>
+              </Card.Footer>
+            </Card>
+          </Link>
         </Col>
         ))}
       </Row>
