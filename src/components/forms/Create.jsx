@@ -1,60 +1,56 @@
-import { Container, Form, Button, FloatingLabel } from "react-bootstrap";
+import { Container, Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
 import * as yup from 'yup';
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import axios from "axios";
-import { authRegisterURL } from "../../utilities/constants";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
-
+import { venuesURL } from "../../utilities/constants";
+import { FieldArray } from "formik";
 
 const schema = yup.object().shape({
   name: yup.string().min(3).required(),
   description: yup.string().required(),
-  media: yup.string().url("invalid url").required(),
+ // media: yup.string().url("invalid url").required(),
   //venueManager: yup.boolean().oneOf([true]).notRequired(),
   
 });
 
-/*testUser venueManager:false: 
-username: addyB
-email: addyB@noroff.no
-avatar: https://gravatar.com/avatar/63e0639bb8d217fe96e4f7c6ccb886b0?s=400&d=robohash&r=x
-password: 896734jdlmjd846h
-*/
-
-/*testUser venueManager:true: 
-username: addyB123
-email: addyB123@noroff.no
-avatar: 
-password: 3848372hye373dnidh
-*/
-
-
-
-
-
 export default function Create(){
   const [submitting ,setSubmitting] = useState(false);
   const [registerError, setRegisterError] = useState(null);
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem('auth'));
+    if (profile) {
+     setProfile(profile);
+    }
+  }, []);
   
 
   const navigate = useNavigate()
+  
   async function onSubmit(data){
-    setSubmitting(true);
-    setRegisterError(null);
+    if(profile.name){
+      setSubmitting(true);
+      setRegisterError(null);
 
-    try{
-      const response = await axios.post(authRegisterURL, data);
-      console.log(response.data)
-      navigate('/Sign-in')
-    } catch (error) {
-      console.log("error", error.response.data.errors[0].message);
-      setRegisterError(error.response.data.errors[0].message.toString());
-    } finally {
-      setSubmitting(false)
+      try{
+        const response = await axios.post(venuesURL, data, {
+          headers: {
+            Authorization: `Bearer ${profile.accessToken}`,
+          }
+        });
+        console.log(response.data)
+        navigate('/profile')
+      } catch (error) {
+        console.log(error)
+        console.log("error", error.response.data.errors[0].message);
+        setRegisterError(error.response.data.errors[0].message.toString());
+      } finally {
+        setSubmitting(false)
+      }
     }
-
 
   }
   
@@ -62,7 +58,7 @@ export default function Create(){
 return (
   <Formik
       validationSchema={schema}
-      onSubmit={console.log}
+      onSubmit={onSubmit}
       initialValues={{
         name: '',
         description: '',
@@ -83,7 +79,7 @@ return (
           country: '',
           continent: '',
           lat: '',
-          ing: '',
+          lng: '',
         }
       }}
     >
@@ -100,54 +96,147 @@ return (
       <Container className="mt-5 mb-5">
         <p className="text-danger fs-5">{registerError ? registerError + " please try again" : null}</p>
         <Form className="mt-3" noValidate onSubmit={handleSubmit}>
-          <Form.Group controlId="validationFormik01">
-            <FloatingLabel controlId="floatingInputName" label="name"  className="mb-3">
+          <Row>
+          <Form.Group as={Col} controlId="validationFormik01">
+            <FloatingLabel controlId="floatingInputName" label="Name"  className="mb-3">
               <Form.Control type="text" placeholder="name" name="name" value={values.name} onChange={handleChange} isValid={touched.name && !errors.name} isInvalid={!!errors.name}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide more then 3 characters</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
-          <Form.Group>
+          <Form.Group as={Col}>
             <FloatingLabel controlId="floatingInputDescription" label="Description" className="mb-3">
               <Form.Control type="text" placeholder="description" name="description" value={values.description} onChange={handleChange} isValid={touched.description && !errors.description} isInvalid={!!errors.description}/>
               <Form.Control.Feedback type="invalid">Please provide more then 3 characters</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
+          
           <Form.Group>
-            <FloatingLabel controlId="floatingInputImage" label="Venue image" className="mb-3">
-            <Form.Control type="url" placeholder="image" name="media" value={values.media} onChange={handleChange} isValid={touched.media && !errors.media} isInvalid={!!errors.media}/>
+            <FloatingLabel controlId="floatingInputImage" label="" className="mb-3">
+            <FieldArray type="url" placeholder="image" name="media" value={values.media} onChange={handleChange} isValid={touched.media && !errors.media} isInvalid={!!errors.media}>
+              {
+                (fieldArrayProps) => {
+                  const {push, remove, form} = fieldArrayProps;
+                  const {values} = form;
+                  const {media} = values;
+                  return (
+                    <div>
+                      {media.map((image, index) =>(
+                        <div key={index}>
+                          <Field name={`media[${index}]`} />
+                          {
+                            index > 0 && ( 
+                            <Button onClick={() => remove(index)}>remove</Button>
+                          )}
+                          
+                          <Button onClick={() => push("")}>add</Button>
+                        </div>
+                      ))}
+                    </div>
+                  )
+
+                }
+              }
+            </FieldArray>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
-          <Form.Group>
+          
+          <Form.Group as={Col}>
             <FloatingLabel controlId="floatingInputPrice" label="Venue price" className="mb-3">
             <Form.Control type="number" placeholder="price" name="price" value={values.price} onChange={handleChange} isValid={touched.price && !errors.price} isInvalid={!!errors.price}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide a valid price</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
-          <Form.Group>
-            <FloatingLabel controlId="floatingInputGuests" label="maxGuests" className="mb-3">
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputGuests" label="Max guests" className="mb-3">
             <Form.Control type="number" placeholder="guests" name="maxGuests" value={values.maxGuests} onChange={handleChange} isValid={touched.maxGuests && !errors.maxGuests} isInvalid={!!errors.maxGuests}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
-          <Form.Group>
-            <FloatingLabel controlId="floatingInputRating" label="rating" className="mb-3">
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="Rating" className="mb-3">
             <Form.Control type="number" placeholder="rating" name="rating" value={values.rating} onChange={handleChange} isValid={touched.rating && !errors.rating} isInvalid={!!errors.rating}/>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
+          
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="wifi"  onChange={handleChange} value={values.meta.wifi} name="meta.wifi"  />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="parking"  onChange={handleChange} value={values.meta.parking} name="meta.parking"  />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="breakfast"  onChange={handleChange} value={values.meta.breakfast} name="meta.breakfast" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="pets"  onChange={handleChange} value={values.meta.pets} name="meta.pets" />
+          </Form.Group>
+
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="address" className="mb-3">
+            <Form.Control type="text" placeholder="address" name="location.address" value={values.location.address} onChange={handleChange} isValid={touched.address && !errors.address} isInvalid={!!errors.address}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="city" className="mb-3">
+            <Form.Control type="text" placeholder="city" name="location.city" value={values.location.city} onChange={handleChange} isValid={touched.city && !errors.city} isInvalid={!!errors.city}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="zip" className="mb-3">
+            <Form.Control type="text" placeholder="zip" name="location.zip" value={values.location.zip} onChange={handleChange} isValid={touched.zip && !errors.zip} isInvalid={!!errors.zip}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          </Row>
+          <Row>
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="country" className="mb-3">
+            <Form.Control type="text" placeholder="country" name="location.country" value={values.location.country} onChange={handleChange} isValid={touched.country && !errors.country} isInvalid={!!errors.country}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="continent" className="mb-3">
+            <Form.Control type="text" placeholder="continent" name="location.continent" value={values.location.continent} onChange={handleChange} isValid={touched.continent && !errors.continent} isInvalid={!!errors.continent}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="latitude" className="mb-3">
+            <Form.Control type="number" placeholder="latitude" name="location.lat" value={values.location.lat} onChange={handleChange} isValid={touched.lat && !errors.lat} isInvalid={!!errors.lat}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <FloatingLabel controlId="floatingInputRating" label="longitude" className="mb-3 text-body-secondary">
+            <Form.Control type="number" placeholder="longitude" name="location.lng" value={values.location.lng} onChange={handleChange} isValid={touched.lng && !errors.lng} isInvalid={!!errors.lng}/>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
           
-          <Button variant="primary" type="submit">
+
+          
+          </Row>
+          <Button className="mb-5" variant="primary" type="submit">
           {submitting ? "Signing in..." : "Register"}
           </Button>
+          
         </Form>
       </Container>
 
