@@ -4,6 +4,9 @@ import { profileURL } from "../utilities/constants";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import defaultImage from "../images/window-g12c04a259_1920.jpg";
 import { Link } from "react-router-dom";
+import { CALENDAR_OPTIONS } from "../utilities/misc";
+import moment from "moment";
+
 
 export default function UseBookings() {
   const [bookings, setBookings] = useState([]);
@@ -21,7 +24,7 @@ export default function UseBookings() {
   useEffect(() => {
     async function getBookings(){
       if(token.name){
-        const bookingsUrl = profileURL + `/${token.name}?_bookings=true`;
+        const bookingsUrl = profileURL + `/${token.name}?_bookings=true&_venues=true`;
         
         try{
           const response = await axios.get(bookingsUrl, {
@@ -49,36 +52,70 @@ export default function UseBookings() {
   }
 
   console.log(bookings)
-   if(bookings.bookings){
+  if(bookings.bookings){
     return (
       <Container>
-        
-      <Row md={2} xs={1} lg={3} className="g-3 ">
-      {bookings.bookings.map((venue) => (
-      <Col key={venue.id}>
-        <Link className="venueLink" to={`/venue/${venue.id}`}>
-          <Card className="venueCard h-100">
-            <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.venue.media[0] ? venue.venue.media[0] : defaultImage} 
-              onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src=defaultImage;}} 
-            />
-            <Card.Body>
-              <Card.Title className="mb-4">{venue.venue.name}</Card.Title>
-              <div className="d-flex  align-items-center justify-content-between">
-                <Card.Text className="mb-0">{venue.venue.price} kr NOK</Card.Text>
-                <Card.Text>Guests: {venue.venue.maxGuests}</Card.Text>
-              </div>
-            </Card.Body>
-            <Card.Footer>
-              <Button className="venuesLink" href={`/venue/${venue.id}`}>take a look</Button>
-            </Card.Footer>
-          </Card>
-        </Link>
-      </Col>
-      ))}
-    </Row>
-  </Container>
+        <h2 className="mt-3 fw-lighter border-bottom">Your Venues</h2>
+        <Row md={2} xs={1} lg={3} className="g-3 ">
+          {bookings.venues.map((venue) => (
+          <Col className="mb-5" key={venue.id}>
+            <Link className="venueLink" to={`/venue/${venue.id}`}>
+              <Card className="venueCard h-100">
+                <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.media[0] ? venue.media[0] : defaultImage} 
+                  onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src=defaultImage;}} 
+                />
+                <Card.Body>
+                  <Card.Title className="mb-4">{venue.name}</Card.Title>
+                  <div className="d-flex  align-items-center justify-content-between border-bottom">
+                    <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
+                    <Card.Text>Guests: {venue.maxGuests}</Card.Text>
+                  </div>
+                  <div className="d-flex  align-items-center justify-content-between mt-3">
+                    <Card.Text>Created: {moment(venue.created).format('DD/MM/YYYY')}</Card.Text>
+                  </div>
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
+                  <Card.Text className="productsLink" href={`/venue/${venue.id}`}>Update</Card.Text>
+                </Card.Footer>
+              </Card>
+            </Link>
+          </Col>
+          ))}
+          
+        </Row>
+        <h2 className="mt-3 fw-lighter border-bottom">Your Bookings</h2>
+        <Row md={2} xs={1} lg={3} className="g-3 ">
+          {bookings.bookings.map((venue) => (
+          <Col className="mb-5" key={venue.id}>
+            <Link className="venueLink" to={`/venue/${venue.venue.id}`}>
+              <Card className="venueCard h-100">
+                <Card.Img className="cardImg rounded" style={{width: "100%", height: "30vh", objectFit: "cover"}} variant="top" src={venue.venue.media[0] ? venue.venue.media[0] : defaultImage} 
+                  onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src=defaultImage;}} 
+                />
+                <Card.Body>
+                  <Card.Title className="mb-4">{venue.venue.name}</Card.Title>
+                  <div className="d-flex  align-items-center justify-content-between border-bottom">
+                    <Card.Text className="mb-0">{venue.venue.price} kr NOK</Card.Text>
+                    <Card.Text>Guests: {venue.venue.maxGuests}</Card.Text>
+                  </div>
+                  <div className="d-flex  align-items-center justify-content-between mt-3">
+                    <Card.Text className="mb-0">From: {moment(venue.dateFrom).format('DD/MM/YYYY')}</Card.Text>
+                    <Card.Text>To: {moment(venue.dateTo).format('DD/MM/YYYY')}</Card.Text>
+                  </div>
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
+                  <Card.Text className="productsLink" href={`/venue/${venue.venue.id}`}>Take a look</Card.Text>
+                </Card.Footer>
+              </Card>
+            </Link>
+          </Col>
+          ))}
+        </Row>
+      </Container>
     )
-   }
+  }
 }
