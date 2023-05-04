@@ -52,14 +52,14 @@ export default function AllVenues(venues) {
                 
               />
               <Card.Body>
-                <Card.Title className="mb-4">{venue.name}</Card.Title>
-                <div className="d-flex  align-items-center justify-content-between">
+                <Card.Title className="mb-3 fw-lighter fs-4 border-bottom">{venue.name}</Card.Title>
+                <div className="d-flex mb-2  align-items-center justify-content-between">
                   <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
                   <Card.Text>Guests: {venue.maxGuests}</Card.Text>
                 </div>
               </Card.Body>
-              <Card.Footer className="d-flex justify-content-center align-items-center">
-                <Button className="venuesLink" href={`/venue/${venue.id}`}>Book</Button>
+              <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
+              <Card.Text className="productsLink" href={`/venue/${venue.id}`}>Reserve</Card.Text>
               </Card.Footer>
             </Card>
           </Link>
