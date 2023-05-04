@@ -1,12 +1,12 @@
+import { Container } from "react-bootstrap"
 import Create from "../../forms/Create"
 
-const test = {
-  soda: {
-    drink: "cola"
-  }
-}
 
-console.log(test.soda.drink)
 export default function CreateVenue(){
-  return (<><Create /></>)
+  return (
+  <Container>
+    <h1 className="mt-5 border-bottom border-primary fw-lighter">Create Venue</h1>
+    <Create />
+  </Container>
+  )
 }
