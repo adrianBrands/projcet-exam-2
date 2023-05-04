@@ -10,7 +10,7 @@ import { bookings } from "../../utilities/constants";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { Link } from "react-router-dom";
 
 export default function Calendar(){
   const [submitting ,setSubmitting] = useState(false);
@@ -84,13 +84,19 @@ export default function Calendar(){
       setBookingError(error.response.data.errors[0].message.toString());
     } finally {
       setSubmitting(false);
-
-      /*setTimeout(() => {
-        document.getElementsByClassName("bookingForm").reset();
-      }, 2000);*/
+      
+      
     }
 
     
+  }
+
+  if(submitted){
+    return (
+      <div className="d-flex align-items-center justify-content-center">
+        <p className="fs-3 text-primary ">Success, go and checkout your latest <Link to={"/profile"}>booking</Link></p>
+      </div>
+    )
   }
 
   return ( 
@@ -147,8 +153,7 @@ export default function Calendar(){
       </div>
     </Form.Group>
     {token.accessToken ? 
-    <Button variant="outline-primary" size="lg" className="mt-5 mb-5" type="submit">{submitting ? "Booking..." : "Book"}</Button>
-    
+    <Button variant="outline-primary" size="lg" className="mt-5" type="submit">{submitting ? "Booking..." : "Book"}</Button>
     :
     <div>
       <div className="d-flex flex-column justify-content-center align-items-center">
