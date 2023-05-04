@@ -6,9 +6,10 @@ export default function Profile(){
   return (
     <Container>
       <h1 className="mt-5 border-bottom">Profile</h1>
-      <h3 className="mt-5 fw-lighter border-bottom">Change profile image</h3>
+      <h2 className="mt-5 fw-lighter border-bottom">Change profile image</h2>
       <UseProfileImage/>
-      <h2 className="border-bottom fw-lighter">Your bookings</h2>
+      
+      
       <UseBookings />
     </Container>
   )
