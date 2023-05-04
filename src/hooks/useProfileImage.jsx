@@ -48,8 +48,6 @@ export default function UseProfileImage(){
       } finally {
         setSubmitting(false);
         window.location.reload();
-       
-        
       }
 
     }
