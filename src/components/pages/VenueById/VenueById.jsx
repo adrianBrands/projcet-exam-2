@@ -1,7 +1,5 @@
-import UseVenuesById from "../../../hooks/useVenueById"
+import UseVenuesById from "../../../hooks/useVenueById";
 
-export default function VenueById(){
-  return (
-  <UseVenuesById />
-  )
+export default function VenueById() {
+  return (<UseVenuesById />);
 }

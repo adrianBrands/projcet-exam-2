@@ -1,45 +1,37 @@
 import { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-export default function IsLoggedIn(){
+export default function IsLoggedIn() {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('auth'));
+    const items = JSON.parse(localStorage.getItem("auth"));
     if (items) {
-     setItems(items);
+      setItems(items);
     }
   }, []);
 
-   function removeItem() {
+  function removeItem() {
     localStorage.removeItem("auth");
-    navigate('/');
-    navigate(0)
+    navigate("/");
+    navigate(0);
   }
 
-
-
-  if (items.name){
+  if (items.name) {
     return (
       <Dropdown.Menu variant="dark">
         <Dropdown.Item href="/Profile">Profile</Dropdown.Item>
         <Dropdown.Item onClick={removeItem}>Sign out</Dropdown.Item>
       </Dropdown.Menu>
-    )
+    );
   } else if (!items.name) {
     return (
       <Dropdown.Menu variant="dark">
         <Dropdown.Item href="/Register">Register</Dropdown.Item>
         <Dropdown.Item href="/Sign-in">Sign in</Dropdown.Item>
       </Dropdown.Menu>
-    )
+    );
   }
-
-
-
-
 }
-
-
