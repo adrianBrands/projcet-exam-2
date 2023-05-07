@@ -12,7 +12,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 
-export default function Calendar() {
+const URL = bookings + "?_customer=true&_venue=true";
+
+export default function Calendar(bookings) {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [dateRange, setDateRange] = useState(["", ""]);
@@ -21,6 +23,19 @@ export default function Calendar() {
   const [token, setToken] = useState([]);
   const [error, setError] = useState(null);
   const [bookingError, setBookingError] = useState(null);
+
+  function excludeDates() {
+    return bookings.bookings.map((booking) => {
+      const start = new Date(booking.dateFrom);
+      const end = new Date(booking.dateTo);
+
+      if (start > end) {
+        return { start: end, end: start };
+      } else {
+        return { start, end };
+      }
+    });
+  }
 
   const clicked = () => {
     setDateRange([null, null]);
@@ -65,17 +80,17 @@ export default function Calendar() {
       venueId: id,
     };
 
-    console.log(data);
-    console.log(token.accessToken);
+    //console.log(data);
+    //console.log(token.accessToken);
 
     try {
-      const response = await axios.post(bookings, data, {
+      const response = await axios.post(URL, data, {
         headers: {
           Authorization: `Bearer ${token.accessToken}`,
         },
       });
 
-      console.log(response.data);
+      //console.log(response.data);
 
       setSubmitted(true);
     } catch (error) {
@@ -111,6 +126,7 @@ export default function Calendar() {
             inline
             calendarClassName="calendar_enquire"
             isClearable={true}
+            excludeDateIntervals={excludeDates()}
             onChange={(update) => {
               setDateRange(update);
             }}

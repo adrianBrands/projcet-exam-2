@@ -10,7 +10,7 @@ export default function UseVenuesById() {
   const [error, setError] = useState(null);
 
   const { id } = useParams();
-  const API_URL = `${venuesURL}/${id}?_owner=true`;
+  const API_URL = `${venuesURL}/${id}?_bookings=true`;
 
   useEffect(
     function () {
