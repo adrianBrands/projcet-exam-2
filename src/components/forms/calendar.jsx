@@ -113,9 +113,10 @@ export default function Calendar(bookings) {
 
   return (
     <>
-      <Form className="bookingForm" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Form className="bookingForm d-flex align-items-center justify-content-center mt-3" onSubmit={handleSubmit(onSubmit)} noValidate>
         <p className="text-danger fs-5">{bookingError ? bookingError + " please try again" : null}</p>
         <fieldset disabled={error}>
+          <div className="d-flex align-items-center justify-content-center">
           <DatePicker
             selected={startDate}
             startDate={startDate}
@@ -132,6 +133,7 @@ export default function Calendar(bookings) {
             }}
             minDate={new Date()}
           />
+          </div>
 
           <Form.Group className="d-flex mb-4 mt-md-1 align-items-center">
             <div>
