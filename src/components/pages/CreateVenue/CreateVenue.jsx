@@ -4,7 +4,7 @@ import Create from "../../forms/Create";
 export default function CreateVenue() {
   return (
     <Container>
-      <h1 className="mt-5 border-bottom border-primary fw-lighter">Create Venue</h1>
+      <h1 className="mt-5 border-bottom border-bottom text-primary">Create Venue</h1>
       <Create />
     </Container>
   );

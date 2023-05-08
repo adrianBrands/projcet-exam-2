@@ -4,12 +4,15 @@ import { FaCar, FaDog, FaLaptopCode, FaUtensils } from "react-icons/fa";
 import Calendar from "../forms/Calendar";
 import Update from "../forms/Update";
 import { useState, useRef, useEffect } from "react";
+import UseDelete from "../../hooks/useDelete";
 
 export default function VenueById(data) {
   const [isShown, setIsShown] = useState(false);
   const updateSection = useRef(null);
   const [items, setItems] = useState([]);
+  
 
+  
   const { id, name, meta, description, price, maxGuests, owner, media, rating, location, bookings } = data;
 
   console.log(bookings);
@@ -19,6 +22,8 @@ export default function VenueById(data) {
       setItems(items);
     }
   }, []);
+
+ 
 
   const handleClick = (event) => {
     setIsShown((current) => !current);
@@ -46,7 +51,7 @@ export default function VenueById(data) {
             variant="outline-warning">
             {isShown ? "close" : "update"}
           </Button>
-          <Button variant="outline-danger">Delete</Button>
+          <UseDelete/>
         </div>
       );
     }

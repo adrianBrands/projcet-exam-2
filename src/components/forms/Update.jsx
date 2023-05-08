@@ -321,7 +321,7 @@ export default function Update(props) {
               </Form.Group>
             </Row>
             <Button className="mb-5" variant="primary" type="submit">
-              {submitting ? "Signing in..." : "Register"}
+              {submitting ? "Updating..." : "Update"}
             </Button>
           </Form>
         </Container>
