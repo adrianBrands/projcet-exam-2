@@ -5,14 +5,13 @@ import Calendar from "../forms/Calendar";
 import Update from "../forms/Update";
 import { useState, useRef, useEffect } from "react";
 import UseDelete from "../../hooks/useDelete";
+import moment from "moment";
 
 export default function VenueById(data) {
   const [isShown, setIsShown] = useState(false);
   const updateSection = useRef(null);
   const [items, setItems] = useState([]);
-  
 
-  
   const { id, name, meta, description, price, maxGuests, owner, media, rating, location, bookings } = data;
 
   console.log(bookings);
@@ -22,8 +21,6 @@ export default function VenueById(data) {
       setItems(items);
     }
   }, []);
-
- 
 
   const handleClick = (event) => {
     setIsShown((current) => !current);
@@ -51,8 +48,42 @@ export default function VenueById(data) {
             variant="outline-warning">
             {isShown ? "close" : "update"}
           </Button>
-          <UseDelete/>
+          <UseDelete />
         </div>
+      );
+    }
+  }
+
+  function DisplayCalendar() {
+    if ( owner.name !== items.name) {
+      return (
+        <Card className="mt-3">
+          <Card.Body className="d-flex justify-content-between border-bottom">
+            <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
+            <Card.Title className="fw-normal">{maxGuests} guests</Card.Title>
+          </Card.Body>
+          <Card.Footer>
+            <Calendar bookings={bookings} />
+          </Card.Footer>
+        </Card>
+      );
+    }
+    if (items.venueManager === true && owner.name === items.name) {
+      return (
+        <Card className="mt-3">
+          <Card.Body className="">
+            <Card.Title>Bookings:</Card.Title>
+            {bookings.map((booking) => {
+              return (
+                <Container className="d-flex justify-content-around">
+                  <Card.Text className="text-primary">guests: {booking.guests}</Card.Text>
+                  <Card.Text className="text-primary">from: {moment(booking.dateFrom).format("DD-MM-YYYY")}</Card.Text>
+                  <Card.Text className="text-primary">to: {moment(booking.dateTo).format("DD-MM-YYYY")}</Card.Text>
+                </Container>
+              );
+            })}
+          </Card.Body>
+        </Card>
       );
     }
   }
@@ -127,17 +158,9 @@ export default function VenueById(data) {
         </Col>
         <Col className="lg-3 mt-5">
           <div>
-            <h2 className="border-bottom">{description}</h2>
+            <h2 className="border-bottom fs-5">{description}</h2>
           </div>
-          <Card className="mt-3">
-            <Card.Body className="d-flex justify-content-between border-bottom">
-              <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
-              <Card.Title className="fw-normal">{maxGuests} guests</Card.Title>
-            </Card.Body>
-            <Card.Footer>
-              <Calendar bookings={bookings} />
-            </Card.Footer>
-          </Card>
+          <DisplayCalendar />
           <div ref={updateSection}>
             {isShown ? (
               <Update

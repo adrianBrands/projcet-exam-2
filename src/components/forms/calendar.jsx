@@ -113,26 +113,28 @@ export default function Calendar(bookings) {
 
   return (
     <>
+      <div>
+        <p className="text-danger">{bookingError ? bookingError + " please try again" : null}</p>
+      </div>
       <Form className="bookingForm d-flex align-items-center justify-content-center mt-3" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <p className="text-danger fs-5">{bookingError ? bookingError + " please try again" : null}</p>
         <fieldset disabled={error}>
           <div className="d-flex align-items-center justify-content-center">
-          <DatePicker
-            selected={startDate}
-            startDate={startDate}
-            endDate={endDate}
-            dateFormat="dd/MM/yyyy"
-            selectsRange
-            fixedHeight={true}
-            inline
-            calendarClassName="calendar_enquire"
-            isClearable={true}
-            excludeDateIntervals={excludeDates()}
-            onChange={(update) => {
-              setDateRange(update);
-            }}
-            minDate={new Date()}
-          />
+            <DatePicker
+              selected={startDate}
+              startDate={startDate}
+              endDate={endDate}
+              dateFormat="dd/MM/yyyy"
+              selectsRange
+              fixedHeight={true}
+              inline
+              calendarClassName="calendar_enquire"
+              isClearable={true}
+              excludeDateIntervals={excludeDates()}
+              onChange={(update) => {
+                setDateRange(update);
+              }}
+              minDate={new Date()}
+            />
           </div>
 
           <Form.Group className="d-flex mb-4 mt-md-1 align-items-center">
