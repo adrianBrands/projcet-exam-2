@@ -6,6 +6,8 @@ import Update from "../forms/Update";
 import { useState, useRef, useEffect } from "react";
 import UseDelete from "../../hooks/useDelete";
 import moment from "moment";
+import Map from "../map/map";
+
 
 export default function VenueById(data) {
   const [isShown, setIsShown] = useState(false);
@@ -55,7 +57,7 @@ export default function VenueById(data) {
   }
 
   function DisplayCalendar() {
-    if ( owner.name !== items.name) {
+    if (owner.name !== items.name) {
       return (
         <Card className="mt-3">
           <Card.Body className="d-flex justify-content-between border-bottom">
@@ -89,6 +91,7 @@ export default function VenueById(data) {
   }
 
   return (
+    <>
     <Container key={id} className="mt-3">
       <Row md={1} xs={1} lg={2}>
         <Col className="lg-8">
@@ -182,6 +185,11 @@ export default function VenueById(data) {
           </div>
         </Col>
       </Row>
+      {location.lat === 0 && location.lng === 0 ? null : <Map lat={location.lat} lng={location.lng} />}
     </Container>
+    
+    
+    
+</>
   );
 }

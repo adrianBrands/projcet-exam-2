@@ -1,30 +1,25 @@
 //$primary:rgba(0, 0, 0, 0.3);
-$primary:#eb5555;
-
-
-
+$primary: #eb5555;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
-
-.btn-primary{
+.btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-hover-color:#fff;
+  --bs-btn-hover-color: #fff;
 }
 
-
-
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
 }
 
-.userIcon{
+.userIcon {
   margin-bottom: 0;
   font-size: 30px;
 }
 
-@import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+@import "react-datepicker/dist/react-datepicker-cssmodules.css";
 @import "react-datepicker/dist/react-datepicker.css";
 
 @import "./header.scss";
@@ -35,6 +30,4 @@ body, html {
 @import "./search.scss";
 @import "./carousel.scss";
 @import "./calendar.scss";
-
-
-
+@import "./map.scss";
