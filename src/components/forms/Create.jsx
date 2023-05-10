@@ -54,7 +54,7 @@ export default function Create() {
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={onSubmit}
+      onSubmit={console.log}
       initialValues={{
         name: "",
         description: "",
@@ -114,7 +114,7 @@ export default function Create() {
               </Form.Group>
 
               <Form.Group>
-                <FloatingLabel controlId="floatingInputImage" label="" className="mb-3">
+                <FloatingLabel controlId="floatingInputImage" label="" className="mb-4">
                   <FieldArray
                     type="url"
                     placeholder="image"
@@ -131,10 +131,10 @@ export default function Create() {
                         <div>
                           {media.map((image, index) => (
                             <div key={index}>
-                              <Field name={`media[${index}]`} />
-                              {index > 0 && <Button onClick={() => remove(index)}>remove</Button>}
+                              <Field placeholder="Image URL" className="field" name={`media[${index}]`} />
+                              {index > 0 && <Button className="mb-3 remove" onClick={() => remove(index)}>remove</Button>}
 
-                              <Button onClick={() => push("")}>add</Button>
+                              <Button className="mb-3 add" onClick={() => push("")}>add</Button>
                             </div>
                           ))}
                         </div>
