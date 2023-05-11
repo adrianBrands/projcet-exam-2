@@ -1,10 +1,11 @@
-import { FaFrown } from "react-icons/fa"
+import { ExclamationTriangle } from "react-bootstrap-icons"
 
 export default function Error(){
   return (
     <div className="alert alert-warning">
-      <FaFrown />
-      Upps something went wrong
+      <ExclamationTriangle className="me-3" />
+      Ups something went wrong...
     </div>
   )
 }
+

@@ -47,8 +47,7 @@ export default function UseVenues() {
   if (venues) {
     return (
       <>
-        {" "}
-        <Venues />{" "}
+        <Venues />
       </>
     );
   }

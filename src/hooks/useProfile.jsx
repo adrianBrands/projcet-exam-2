@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { CALENDAR_OPTIONS } from "../utilities/misc";
 import moment from "moment";
 import Loader from "../components/loader/Loader";
+import Error from "../components/error/Error";
 
 export default function UseBookings() {
   const [bookings, setBookings] = useState([]);
@@ -35,7 +36,6 @@ export default function UseBookings() {
           });
           setBookings(response.data);
         } catch (error) {
-          console.log(error);
           setIsError(true);
         } finally {
           setIsLoading(false);
@@ -49,7 +49,7 @@ export default function UseBookings() {
     return <Loader />;
   }
   if (isError) {
-    return <div>errrrrror</div>;
+    return <Error />;
   }
 
   console.log(bookings);
@@ -58,7 +58,7 @@ export default function UseBookings() {
       <Container>
         {token.venueManager === true ? (
           <div>
-            <h2 className="mt-3 fw-lighter border-bottom">Your Venues</h2>
+            <h2 className="mt-5 fw-lighter border-bottom">Your Venues</h2>
             <h3 className="fw-normal mb-4">{bookings.venues.length ? null : "You have 0 venues at the moment"}</h3>
             <Row md={2} xs={1} lg={3} className="g-3 ">
               {bookings.venues.map((venue) => (

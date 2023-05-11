@@ -4,6 +4,8 @@ import axios from "axios";
 import VenueById from "../components/venues/VenueById";
 import { venuesURL } from "../utilities/constants";
 import Loader from "../components/loader/Loader";
+import Error from "../components/error/Error";
+
 
 export default function UseVenuesById() {
   const [venue, setVenue] = useState([]);
@@ -46,7 +48,8 @@ export default function UseVenuesById() {
           <Venue />
         </>
       ) : (
-        setError(error)
+        setError(error),
+        <Error />
       )}
     </>
   );
