@@ -1,11 +1,17 @@
 import { Container } from "react-bootstrap";
 import RegisterUser from "../../forms/Register";
+import { Helmet } from "react-helmet";
 
 export default function Register() {
   return (
-    <Container>
-      <h1 className="border-bottom mt-5 text-primary">Register</h1>
-      <RegisterUser />
-    </Container>
+    <>
+      <Helmet>
+        <title>Holidaze | Register</title>
+      </Helmet>
+      <Container>
+        <h1 className="border-bottom mt-5 text-primary">Register</h1>
+        <RegisterUser />
+      </Container>
+    </>
   );
 }
