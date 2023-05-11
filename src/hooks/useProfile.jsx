@@ -6,6 +6,7 @@ import defaultImage from "../images/window-g12c04a259_1920.jpg";
 import { Link } from "react-router-dom";
 import { CALENDAR_OPTIONS } from "../utilities/misc";
 import moment from "moment";
+import Loader from "../components/loader/Loader";
 
 export default function UseBookings() {
   const [bookings, setBookings] = useState([]);
@@ -26,6 +27,7 @@ export default function UseBookings() {
         const bookingsUrl = profileURL + `/${token.name}?_bookings=true&_venues=true&_owner=true`;
 
         try {
+          setIsLoading(true)
           const response = await axios.get(bookingsUrl, {
             headers: {
               Authorization: `Bearer ${token.accessToken}`,
@@ -44,7 +46,7 @@ export default function UseBookings() {
   }, [token.accessToken, token.name]);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <Loader />;
   }
   if (isError) {
     return <div>errrrrror</div>;

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import VenueById from "../components/venues/VenueById";
 import { venuesURL } from "../utilities/constants";
+import Loader from "../components/loader/Loader";
 
 export default function UseVenuesById() {
   const [venue, setVenue] = useState([]);
@@ -39,7 +40,7 @@ export default function UseVenuesById() {
   return (
     <>
       {loading ? (
-        <div>loading.-..</div>
+        <Loader />
       ) : venue ? (
         <>
           <Venue />

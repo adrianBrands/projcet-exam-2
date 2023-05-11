@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { venuesURL } from "../utilities/constants";
 import AllVenues from "../components/venues/AllVenues";
+import Loader from "../components/loader/Loader";
 
 export default function UseVenues() {
   const [venues, setVenues] = useState([]);
@@ -11,6 +12,8 @@ export default function UseVenues() {
   useEffect(() => {
     async function getVenues() {
       try {
+        setIsLoading(true);
+        setIsError(false);
         const response = await axios.get(venuesURL);
         setVenues(response.data);
       } catch (error) {
@@ -25,7 +28,11 @@ export default function UseVenues() {
   }, []);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
   if (isError) {
     return <div>errrrrror</div>;
@@ -37,6 +44,11 @@ export default function UseVenues() {
 
   console.log(venues);
   if (venues) {
-    return <Venues />;
+    return (
+      <>
+        {" "}
+        <Venues />{" "}
+      </>
+    );
   }
 }
