@@ -3,6 +3,7 @@ import defaultImage from "../../images/window-g12c04a259_1920.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEnvironment } from "react-icons/ai";
+import { FaMapMarkedAlt } from "react-icons/fa";
 
 export default function AllVenues(venues) {
   const [search, setSearch] = useState("");
@@ -58,7 +59,7 @@ export default function AllVenues(venues) {
                   </div>
                   {venue.location.lat !== 0 && venue.location.lng !== 0 ? (
                       <Card.Text>
-                        <AiOutlineEnvironment />
+                        <FaMapMarkedAlt style={{fontSize: '25px'}} />
                       </Card.Text>
                     ) : null}
                 </Card.Body>

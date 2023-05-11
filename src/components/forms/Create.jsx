@@ -132,9 +132,15 @@ export default function Create() {
                           {media.map((image, index) => (
                             <div key={index}>
                               <Field placeholder="Image URL" className="field" name={`media[${index}]`} />
-                              {index > 0 && <Button className="mb-3 remove" onClick={() => remove(index)}>remove</Button>}
+                              {index > 0 && (
+                                <Button className="mb-3 remove" onClick={() => remove(index)}>
+                                  remove
+                                </Button>
+                              )}
 
-                              <Button className="mb-3 add" onClick={() => push("")}>add</Button>
+                              <Button className="mb-3 add" onClick={() => push("")}>
+                                add
+                              </Button>
                             </div>
                           ))}
                         </div>

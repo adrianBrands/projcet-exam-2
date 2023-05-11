@@ -3,6 +3,7 @@ import axios from "axios";
 import { venuesURL } from "../utilities/constants";
 import AllVenues from "../components/venues/AllVenues";
 import Loader from "../components/loader/Loader";
+import Error from "../components/error/Error";
 
 export default function UseVenues() {
   const [venues, setVenues] = useState([]);
@@ -35,7 +36,7 @@ export default function UseVenues() {
     );
   }
   if (isError) {
-    return <div>errrrrror</div>;
+    return <Error />;
   }
 
   function Venues() {

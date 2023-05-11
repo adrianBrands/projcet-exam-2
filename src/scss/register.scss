@@ -11,3 +11,7 @@
 .remove{
   margin-right: 5px;
 }
+
+.field:focus{
+  outline-color: $primary;
+}

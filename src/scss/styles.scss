@@ -8,6 +8,10 @@ $primary: #eb5555 ;
   --bs-btn-hover-color: #fff;
 }
 
+.btn-outline-primary:hover { 
+  --bs-btn-hover-color: #fff;
+}
+
 body,
 html {
   height: 100%;
