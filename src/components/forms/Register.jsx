@@ -91,7 +91,7 @@ export default function RegisterUser() {
                   isValid={touched.email && !errors.email}
                   isInvalid={!!errors.email}
                 />
-                <Form.Control.Feedback type="invalid">Please provide a valid email address</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please provide a valid email address with: @stud.noroff.no</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
             <Form.Group>
