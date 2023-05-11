@@ -18,3 +18,7 @@
 .dropstart .dropdown-toggle::before{
   content: none;
 }
+
+.dropdown-item {
+  display: inline;
+}

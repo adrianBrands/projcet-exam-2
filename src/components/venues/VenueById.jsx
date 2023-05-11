@@ -101,7 +101,7 @@ export default function VenueById(data) {
                   return (
                     <Carousel.Item key={url}>
                       <img
-                        className="rounded"
+                        className="rounded d-block w-100"
                         alt=""
                         src={url ? url : defaultImage}
                         onError={({ currentTarget }) => {

@@ -2,6 +2,8 @@ import { Container, Card, Form, Row, Col, Button } from "react-bootstrap";
 import defaultImage from "../../images/window-g12c04a259_1920.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineEnvironment } from "react-icons/ai";
+
 export default function AllVenues(venues) {
   const [search, setSearch] = useState("");
 
@@ -54,6 +56,11 @@ export default function AllVenues(venues) {
                     <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
                     <Card.Text>Guests: {venue.maxGuests}</Card.Text>
                   </div>
+                  {venue.location.lat !== 0 && venue.location.lng !== 0 ? (
+                      <Card.Text>
+                        <AiOutlineEnvironment />
+                      </Card.Text>
+                    ) : null}
                 </Card.Body>
                 <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
                   <Card.Text className="productsLink" href={`/venue/${venue.id}`}>
