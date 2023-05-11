@@ -8,6 +8,10 @@ export default function Home() {
     <>
       <Helmet>
         <title>Holidaze | Home</title>
+        <meta
+          name="description"
+          content="Web site where you can check out several different bookings, make bookings or create venues to be booked by others"
+        />
       </Helmet>
       <div className="backgroundImage">
         <Container>
