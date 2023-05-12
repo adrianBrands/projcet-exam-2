@@ -18,10 +18,10 @@ export default function AllVenues(venues) {
     } else {
       return (
         <div>
-          {filter.map((venues) => (
-            <ul key={venues.id} className="list-group">
-              <Link className="venuesLink" to={`/venue/${venues.id}`}>
-                <Button className="rounded list-group-item list-group-item-action">{venues.name}</Button>
+          {filter.map(({id, name}) => (
+            <ul key={id} className="list-group">
+              <Link className="venuesLink" to={`/venue/${id}`}>
+                <Button className="rounded list-group-item list-group-item-action">{name}</Button>
               </Link>
             </ul>
           ))}
@@ -37,34 +37,34 @@ export default function AllVenues(venues) {
         <DropDownSuggestions />
       </Form>
       <Row md={2} xs={1} lg={4} className="g-3 mt-1">
-        {filter.map((venue) => (
-          <Col key={venue.id}>
-            <Link className="venueLink" to={`/venue/${venue.id}`}>
+        {filter.map(({id, name, media, location, maxGuests, price}) => (
+          <Col key={id}>
+            <Link className="venueLink" to={`/venue/${id}`}>
               <Card className="venueCard h-100">
                 <Card.Img
                   className="cardImg rounded"
                   style={{ width: "100%", height: "30vh", objectFit: "cover" }}
                   variant="top"
-                  src={venue.media[0] ? venue.media[0] : defaultImage}
+                  src={media[0] ? media[0] : defaultImage}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping
                     currentTarget.src = defaultImage;
                   }}
                 />
                 <Card.Body>
-                  <Card.Title className="mb-3 fw-lighter fs-4 border-bottom">{venue.name}</Card.Title>
+                  <Card.Title className="mb-3 fw-lighter fs-4 border-bottom">{name}</Card.Title>
                   <div className="d-flex mb-2  align-items-center justify-content-between">
-                    <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
-                    <Card.Text>Guests: {venue.maxGuests}</Card.Text>
+                    <Card.Text className="mb-0">{price} kr NOK</Card.Text>
+                    <Card.Text>Guests: {maxGuests}</Card.Text>
                   </div>
-                  {venue.location.lat !== 0 && venue.location.lng !== 0 ? (
+                  {location.lat !== 0 && location.lng !== 0 ? (
                       <Card.Text>
                         <FaMapMarkedAlt style={{fontSize: '25px'}} />
                       </Card.Text>
                     ) : null}
                 </Card.Body>
                 <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
-                  <Card.Text className="productsLink" href={`/venue/${venue.id}`}>
+                  <Card.Text className="productsLink" href={`/venue/${id}`}>
                     Reserve
                   </Card.Text>
                 </Card.Footer>

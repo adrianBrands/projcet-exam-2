@@ -52,6 +52,8 @@ export default function UseBookings() {
     return <Error />;
   }
 
+  console.log(bookings)
+
   if (bookings.bookings) {
     return (
       <Container>
@@ -60,32 +62,32 @@ export default function UseBookings() {
             <h2 className="mt-5 fw-lighter border-bottom">Your Venues</h2>
             <h3 className="fw-normal mb-4">{bookings.venues.length ? null : "You have 0 venues at the moment"}</h3>
             <Row md={2} xs={1} lg={3} className="g-3 ">
-              {bookings.venues.map((venue) => (
-                <Col className="mb-5" key={venue.id}>
-                  <Link className="venueLink" to={`/venue/${venue.id}`}>
+              {bookings.venues.map(({id, name, created, price, media, maxGuests}) => (
+                <Col className="mb-5" key={id}>
+                  <Link className="venueLink" to={`/venue/${id}`}>
                     <Card className="venueCard h-100">
                       <Card.Img
                         className="cardImg rounded"
                         style={{ width: "100%", height: "30vh", objectFit: "cover" }}
                         variant="top"
-                        src={venue.media[0] ? venue.media[0] : defaultImage}
+                        src={media[0] ? media[0] : defaultImage}
                         onError={({ currentTarget }) => {
                           currentTarget.onerror = null; // prevents looping
                           currentTarget.src = defaultImage;
                         }}
                       />
                       <Card.Body>
-                        <Card.Title className="mb-4">{venue.name}</Card.Title>
+                        <Card.Title className="mb-4">{name}</Card.Title>
                         <div className="d-flex  align-items-center justify-content-between border-bottom">
-                          <Card.Text className="mb-0">{venue.price} kr NOK</Card.Text>
-                          <Card.Text>Guests: {venue.maxGuests}</Card.Text>
+                          <Card.Text className="mb-0">{price} kr NOK</Card.Text>
+                          <Card.Text>Guests: {maxGuests}</Card.Text>
                         </div>
                         <div className="d-flex  align-items-center justify-content-between mt-3">
-                          <Card.Text>Created: {moment(venue.created).format("DD/MM/YYYY")}</Card.Text>
+                          <Card.Text>Created: {moment(created).format("DD/MM/YYYY")}</Card.Text>
                         </div>
                       </Card.Body>
                       <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
-                        <Card.Text className="productsLink" href={`/venue/${venue.id}`}>
+                        <Card.Text className="productsLink" href={`/venue/${id}`}>
                           Update
                         </Card.Text>
                       </Card.Footer>
@@ -98,33 +100,33 @@ export default function UseBookings() {
         ) : null}
         <h2 className="mt-3 fw-lighter border-bottom">Your Bookings</h2>
         <Row md={2} xs={1} lg={3} className="g-3 ">
-          {bookings.bookings.map((venue) => (
-            <Col className="mb-5" key={venue.id}>
-              <Link className="venueLink" to={`/venue/${venue.venue.id}`}>
+          {bookings.bookings.map(({id, dateFrom, dateTo, venue:{id: venueId, media, name, price, maxGuests }, }) => (
+            <Col className="mb-5" key={id}>
+              <Link className="venueLink" to={`/venue/${venueId}`}>
                 <Card className="venueCard h-100">
                   <Card.Img
                     className="cardImg rounded"
                     style={{ width: "100%", height: "30vh", objectFit: "cover" }}
                     variant="top"
-                    src={venue.venue.media[0] ? venue.venue.media[0] : defaultImage}
+                    src={media[0] ? media[0] : defaultImage}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping
                       currentTarget.src = defaultImage;
                     }}
                   />
                   <Card.Body>
-                    <Card.Title className="mb-4">{venue.venue.name}</Card.Title>
+                    <Card.Title className="mb-4">{name}</Card.Title>
                     <div className="d-flex  align-items-center justify-content-between border-bottom">
-                      <Card.Text className="mb-0">{venue.venue.price} kr NOK</Card.Text>
-                      <Card.Text>Guests: {venue.venue.maxGuests}</Card.Text>
+                      <Card.Text className="mb-0">{price} kr NOK</Card.Text>
+                      <Card.Text>Guests: {maxGuests}</Card.Text>
                     </div>
                     <div className="d-flex  align-items-center justify-content-between mt-3">
-                      <Card.Text className="mb-0">From: {moment(venue.dateFrom).format("DD/MM/YYYY")}</Card.Text>
-                      <Card.Text>To: {moment(venue.dateTo).format("DD/MM/YYYY")}</Card.Text>
+                      <Card.Text className="mb-0">From: {moment(dateFrom).format("DD/MM/YYYY")}</Card.Text>
+                      <Card.Text>To: {moment(dateTo).format("DD/MM/YYYY")}</Card.Text>
                     </div>
                   </Card.Body>
                   <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
-                    <Card.Text className="productsLink" href={`/venue/${venue.venue.id}`}>
+                    <Card.Text className="productsLink" href={`/venue/${venueId}`}>
                       Take a look
                     </Card.Text>
                   </Card.Footer>
