@@ -52,7 +52,6 @@ export default function UseBookings() {
     return <Error />;
   }
 
-  console.log(bookings);
   if (bookings.bookings) {
     return (
       <Container>

@@ -31,8 +31,6 @@ export default function UseDelete() {
             Authorization: `Bearer ${profile.accessToken}`,
           },
         });
-        console.log(response.data);
-        //navigate('/Sign-in')
       } catch (error) {
         console.log(error);
         console.log("error", error.response.data.errors[0].message);
