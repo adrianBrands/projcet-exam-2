@@ -15,13 +15,12 @@
   }
 }*/
 
-.venueLink{
+.venueLink {
   text-decoration: none;
   color: #000;
 
   &:hover {
-    color:#000;
-    
+    color: #000;
   }
 }
 
@@ -32,18 +31,23 @@
     -webkit-transform: scale(1.04);
     transform: scale(1.04);
     transition: all 0.5s;
-  
   }
-
 }
 
-.productsLink{
+.productsLink {
   text-decoration: none;
-  color: #FFF;
+  color: #fff;
 
   &:hover {
-    color: #FFF;
+    color: #fff;
     font-weight: bolder;
   }
 }
 
+.avatar {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+  font-size: 22px;
+}

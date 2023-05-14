@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import UseDelete from "../../hooks/useDelete";
 import moment from "moment";
 import Map from "../map/map";
+import { PeopleFill } from "react-bootstrap-icons";
 
 export default function VenueById(data) {
   const [isShown, setIsShown] = useState(false);
@@ -61,7 +62,7 @@ export default function VenueById(data) {
         <Card className="mt-3">
           <Card.Body className="d-flex justify-content-between border-bottom">
             <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
-            <Card.Title className="fw-normal">{maxGuests} guests</Card.Title>
+            <Card.Title className="fw-normal"> <PeopleFill /> {maxGuests}</Card.Title>
           </Card.Body>
           <Card.Footer>
             <Calendar bookings={bookings} />

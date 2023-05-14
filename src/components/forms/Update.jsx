@@ -139,9 +139,15 @@ export default function Update(props) {
                           {media.map((image, index) => (
                             <div key={index}>
                               <Field placeholder="Image URL" className="field" name={`media[${index}]`} />
-                              {index > 0 && <Button className="remove mb-2" onClick={() => remove(index)}>remove</Button>}
+                              {index > 0 && (
+                                <Button className="remove mb-2" onClick={() => remove(index)}>
+                                  remove
+                                </Button>
+                              )}
 
-                              <Button className="add mb-2" onClick={() => push("")}>add</Button>
+                              <Button className="add mb-2" onClick={() => push("")}>
+                                add
+                              </Button>
                             </div>
                           ))}
                         </div>

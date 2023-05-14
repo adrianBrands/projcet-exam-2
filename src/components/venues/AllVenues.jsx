@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaMapMarkedAlt } from "react-icons/fa";
+import { PeopleFill } from "react-bootstrap-icons";
 
 export default function AllVenues(venues) {
   const [search, setSearch] = useState("");
@@ -18,7 +19,7 @@ export default function AllVenues(venues) {
     } else {
       return (
         <div>
-          {filter.map(({id, name}) => (
+          {filter.map(({ id, name }) => (
             <ul key={id} className="list-group">
               <Link className="venuesLink" to={`/venue/${id}`}>
                 <Button className="rounded list-group-item list-group-item-action">{name}</Button>
@@ -37,7 +38,7 @@ export default function AllVenues(venues) {
         <DropDownSuggestions />
       </Form>
       <Row md={2} xs={1} lg={4} className="g-3 mt-1">
-        {filter.map(({id, name, media, location, maxGuests, price}) => (
+        {filter.map(({ id, name, media, location, maxGuests, price, owner: { avatar }, location: {city, country} }) => (
           <Col key={id}>
             <Link className="venueLink" to={`/venue/${id}`}>
               <Card className="venueCard h-100">
@@ -53,15 +54,24 @@ export default function AllVenues(venues) {
                 />
                 <Card.Body>
                   <Card.Title className="mb-3 fw-lighter fs-4 border-bottom">{name}</Card.Title>
+                  <img src={avatar} className="avatar rounded-circle" height={40} alt="" />
                   <div className="d-flex mb-2  align-items-center justify-content-between">
                     <Card.Text className="mb-0">{price} kr NOK</Card.Text>
-                    <Card.Text>Guests: {maxGuests}</Card.Text>
+                    <Card.Text>
+                      <PeopleFill /> {maxGuests}
+                    </Card.Text>
                   </div>
+                  <div className="d-flex justify-content-between align-items-center">
+                  <p className="fw-bolder">{city}</p>
+                  <p>{country}</p>
+                  </div>
+                  
+
                   {location.lat !== 0 && location.lng !== 0 ? (
-                      <Card.Text>
-                        <FaMapMarkedAlt style={{fontSize: '25px'}} />
-                      </Card.Text>
-                    ) : null}
+                    <Card.Text>
+                      <FaMapMarkedAlt style={{ fontSize: "25px" }} />
+                    </Card.Text>
+                  ) : null}
                 </Card.Body>
                 <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
                   <Card.Text className="productsLink" href={`/venue/${id}`}>

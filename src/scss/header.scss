@@ -22,3 +22,7 @@
 .dropdown-item {
   display: inline;
 }
+
+.navbar-nav .nav-link.active{
+  color: $primary;
+}
