@@ -14,7 +14,19 @@ export default function VenueById(data) {
   const updateSection = useRef(null);
   const [items, setItems] = useState([]);
 
-  const { id, name, meta, description, price, maxGuests, owner, media, rating, location, bookings } = data;
+  const {
+    id,
+    name,
+    meta,
+    description,
+    price,
+    maxGuests,
+    owner: { name: ownerName, avatar },
+    media,
+    rating,
+    location,
+    bookings,
+  } = data;
 
   console.log(bookings);
   useEffect(() => {
@@ -38,7 +50,7 @@ export default function VenueById(data) {
   };
 
   function UpdateDelete() {
-    if (items.venueManager === true && owner.name === items.name) {
+    if (items.venueManager === true && ownerName === items.name) {
       return (
         <div className="d-flex justify-content-evenly mb-5">
           <Button
@@ -57,28 +69,43 @@ export default function VenueById(data) {
   }
 
   function DisplayCalendar() {
-    if (owner.name !== items.name) {
+    if (ownerName !== items.name) {
       return (
-        <Card className="mt-3">
-          <Card.Body className="d-flex justify-content-between border-bottom">
-            <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
-            <Card.Title className="fw-normal"> <PeopleFill /> {maxGuests}</Card.Title>
-          </Card.Body>
-          <Card.Footer>
+        <>
+          <Card className="mt-3">
+            <Card.Body>
+              <div className="d-flex justify-content-between align-items-center">
+                <Card.Title>{ownerName}</Card.Title>
+                <img src={avatar} className="rounded-circle" height={50} width={50} alt="" />
+              </div>
+              <div className="mt-3">
+              <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
+              <Card.Title className="fw-normal">
+                <PeopleFill /> {maxGuests}
+              </Card.Title>
+              </div>
+              <div className="d-flex justify-content-between align-items-center mt-4">
+                <Card.Title className="fw-normal"> address: {location.address} </Card.Title>
+                <Card.Title className="fw-normal">country: {location.country}</Card.Title>
+              </div>
+            </Card.Body>
+            <Card.Footer></Card.Footer>
+          </Card>
+          <Card className="mt-3">
             <Calendar bookings={bookings} />
-          </Card.Footer>
-        </Card>
+          </Card>
+        </>
       );
     }
-    if (items.venueManager === true && owner.name === items.name) {
+    if (items.venueManager === true && ownerName === items.name) {
       return (
         <Card className="mt-3">
           <Card.Body className="">
-            <Card.Title>Bookings:</Card.Title>
+            <Card.Title className="fw-lighter mb-3 border-bottom">Bookings:</Card.Title>
             {bookings.map((booking) => {
               return (
-                <Container className="d-flex justify-content-around">
-                  <Card.Text className="text-primary">guests: {booking.guests}</Card.Text>
+                <Container key={booking.id} className="d-flex justify-content-around">
+                  <Card.Text className="text-primary"><PeopleFill/> {booking.guests}</Card.Text>
                   <Card.Text className="text-primary">from: {moment(booking.dateFrom).format("DD-MM-YYYY")}</Card.Text>
                   <Card.Text className="text-primary">to: {moment(booking.dateTo).format("DD-MM-YYYY")}</Card.Text>
                 </Container>

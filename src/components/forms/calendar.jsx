@@ -158,16 +158,16 @@ export default function Calendar(bookings) {
           </Form.Group>
           {token.accessToken ? (
             <div className="d-grid">
-              <Button variant="outline-primary" size="lg" className="mt-5" type="submit">
+              <Button variant="outline-primary" size="lg" className="mt-3 mb-3" type="submit">
                 {submitting ? "Booking..." : "Book"}
               </Button>
             </div>
           ) : (
             <div>
-              <div className="d-flex flex-column justify-content-center align-items-center">
+              <div className="d-flex justify-content-center align-items-center">
                 <p className="mt-3 text-primary fw-bolder fs-4">Sign up or register to book this venue</p>
               </div>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex mb-3 justify-content-around">
                 <Button href={`/register`}>register</Button>
                 <Button href={`/Sign-in`}>sign in</Button>
               </div>

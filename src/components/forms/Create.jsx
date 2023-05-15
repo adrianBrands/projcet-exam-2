@@ -54,7 +54,7 @@ export default function Create() {
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={console.log}
+      onSubmit={onSubmit}
       initialValues={{
         name: "",
         description: "",
@@ -320,7 +320,7 @@ export default function Create() {
               </Form.Group>
             </Row>
             <Button className="mb-5" variant="primary" type="submit">
-              {submitting ? "Signing in..." : "Register"}
+              {submitting ? "Creating" : "Create"}
             </Button>
           </Form>
         </Container>

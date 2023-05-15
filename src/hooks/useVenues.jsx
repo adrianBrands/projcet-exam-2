@@ -77,15 +77,24 @@ export default function UseVenues() {
           dataLength={venues.slice(0, limit)} //This is important field to render the next data
           next={fetchData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
           endMessage={
-           <div> <div className="d-flex flex-column justify-content-center align-items-center">
-              <p>Yay! You have seen it all</p>
-            
+            <div>
+              {" "}
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <p>Yay! You have seen it all</p>
+              </div>
+              <div className="d-flex flex-column">
+                <Button
+                  variant="outline-primary"
+                  size="lg"
+                  className="mb-5"
+                  onClick={() => {
+                    ScrollTop();
+                  }}>
+                  top
+                </Button>
+              </div>
             </div>
-            <div className="d-flex flex-column">
-            <Button variant="outline-primary" size="lg" className="mb-5" onClick={() => {ScrollTop()}}>top</Button>
-            </div></div>
           }
           // below props only if you need pull down functionality
         >

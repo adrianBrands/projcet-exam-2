@@ -38,7 +38,7 @@ export default function AllVenues(venues) {
         <DropDownSuggestions />
       </Form>
       <Row md={2} xs={1} lg={4} className="g-3 mt-1">
-        {filter.map(({ id, name, media, location, maxGuests, price, owner: { avatar }, location: {city, country} }) => (
+        {filter.map(({ id, name, media, location, maxGuests, price, owner: { avatar }, location: { city, country } }) => (
           <Col key={id}>
             <Link className="venueLink" to={`/venue/${id}`}>
               <Card className="venueCard h-100">
@@ -62,10 +62,9 @@ export default function AllVenues(venues) {
                     </Card.Text>
                   </div>
                   <div className="d-flex justify-content-between align-items-center">
-                  <p className="fw-bolder">{city}</p>
-                  <p>{country}</p>
+                    <p className="fw-bolder">{city}</p>
+                    <p>{country}</p>
                   </div>
-                  
 
                   {location.lat !== 0 && location.lng !== 0 ? (
                     <Card.Text>
