@@ -47,6 +47,7 @@ export default function UseDelete() {
 
   return (
     <Button
+    size="lg"
       variant="outline-danger"
       onClick={() => {
         handleClickDelete();

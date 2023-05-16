@@ -53,7 +53,7 @@ export default function AllVenues(venues) {
                   }}
                 />
                 <Card.Body>
-                  <Card.Title className="mb-3 fw-lighter fs-4 border-bottom">{name}</Card.Title>
+                  <Card.Title className="mb-3 fs-5 border-bottom">{name}</Card.Title>
                   <img src={avatar} className="avatar rounded-circle" height={40} alt="" />
                   <div className="d-flex mb-2  align-items-center justify-content-between">
                     <Card.Text className="mb-0">{price} kr NOK</Card.Text>
@@ -62,8 +62,8 @@ export default function AllVenues(venues) {
                     </Card.Text>
                   </div>
                   <div className="d-flex justify-content-between align-items-center">
-                    <p className="fw-bolder">{city}</p>
-                    <p>{country}</p>
+                    <p className="text-secondary">{city}</p>
+                    <p className="text-secondary">{country}</p>
                   </div>
 
                   {location.lat !== 0 && location.lng !== 0 ? (
@@ -72,7 +72,7 @@ export default function AllVenues(venues) {
                     </Card.Text>
                   ) : null}
                 </Card.Body>
-                <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">
+                <Card.Footer className="cardFooter d-flex justify-content-center align-items-center">
                   <Card.Text className="productsLink" href={`/venue/${id}`}>
                     Reserve
                   </Card.Text>

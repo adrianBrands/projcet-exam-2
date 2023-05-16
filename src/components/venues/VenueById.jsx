@@ -54,6 +54,7 @@ export default function VenueById(data) {
       return (
         <div className="d-flex justify-content-evenly mb-5">
           <Button
+          size="lg"
             id="updateButton"
             onClick={() => {
               handleClick();
@@ -84,9 +85,10 @@ export default function VenueById(data) {
                 <PeopleFill /> {maxGuests}
               </Card.Title>
               </div>
-              <div className="d-flex justify-content-between align-items-center mt-4">
+              <div className="d-flex text-secondary justify-content-between align-items-center mt-4">
                 <Card.Title className="fw-normal"> address: {location.address} </Card.Title>
                 <Card.Title className="fw-normal">country: {location.country}</Card.Title>
+                <Card.Title className="fw-normal"> address: {location.city} </Card.Title>
               </div>
             </Card.Body>
             <Card.Footer></Card.Footer>

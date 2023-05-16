@@ -32,7 +32,7 @@ export default function UseVenues() {
     }
 
     getVenues();
-  }, []);
+  }, [URLEndpoint]);
 
   if (isLoading) {
     return (
@@ -95,9 +95,7 @@ export default function UseVenues() {
                 </Button>
               </div>
             </div>
-          }
-          // below props only if you need pull down functionality
-        >
+          }>
           <Venues />
         </InfiniteScroll>
       </>

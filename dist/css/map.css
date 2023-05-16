@@ -1,0 +1,9 @@
+.leaflet-container {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 20px;
+}
+
+.map {
+  padding-bottom: 50px;
+}/*# sourceMappingURL=map.css.map */

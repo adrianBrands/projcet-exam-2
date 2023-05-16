@@ -32,8 +32,6 @@ export default function Update(props) {
     }
   }, []);
 
-  //const navigate = useNavigate()
-
   async function onSubmit(data) {
     if (profile.name) {
       setSubmitting(true);
@@ -46,7 +44,6 @@ export default function Update(props) {
           },
         });
         console.log(response.data);
-        //navigate('/Sign-in')
       } catch (error) {
         console.log(error);
         console.log("error", error.response.data.errors[0].message);

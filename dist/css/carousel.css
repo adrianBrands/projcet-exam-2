@@ -1,0 +1,8 @@
+.carousel-inner .carousel-item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 70vh;
+  overflow: hidden;
+}/*# sourceMappingURL=carousel.css.map */

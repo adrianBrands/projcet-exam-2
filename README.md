@@ -22,7 +22,7 @@ There are two aspects to this brief: the customer-facing side of the website whe
 - [x] A registered Venue manager may update a Venue they manage
 - [x] A registered Venue manager may delete a Venue they manage
 - [x] A registered Venue manager may view bookings for a Venue they manage
-- [x] A registered user may login
+- [x] A registered user may log-in
 - [x] A registered user may update their avatar
 - [x] A registered user may logout
 
