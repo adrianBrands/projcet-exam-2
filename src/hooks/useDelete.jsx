@@ -5,6 +5,9 @@ import { venuesURL } from "../utilities/constants";
 import { useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+/**
+ * Deletes a venue 
+ */
 export default function UseDelete() {
   const [submitting, setSubmitting] = useState(false);
   const [profile, setProfile] = useState([]);

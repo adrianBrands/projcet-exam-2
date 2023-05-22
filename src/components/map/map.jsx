@@ -6,7 +6,10 @@ import "leaflet/dist/images/marker-shadow.png";
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import {Icon} from 'leaflet'
 
-
+/**
+ * displays a map with a pointer from the lat and lng vales.
+ * @param {Object} props  
+ */
 export default function Map(props) {
   const {lat, lng} = props;
   return (

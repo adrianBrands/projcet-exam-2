@@ -20,6 +20,10 @@ avatar: https://gravatar.com/avatar/63e0639bb8d217fe96e4f7c6ccb886b0?s=400&d=rob
 password: 896734jdlmjd846h
 */
 
+/**
+ * displays a sign in form. When the form submits, sends the data to the api and if success, navigates the user
+ * to the profile page, if an error occurs, displays an error message.  
+ */
 export default function SignInUser() {
   const [submitting, setSubmitting] = useState(false);
   const [signInError, setSignInError] = useState(null);

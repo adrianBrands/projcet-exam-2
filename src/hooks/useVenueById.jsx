@@ -6,7 +6,9 @@ import { venuesURL } from "../utilities/constants";
 import Loader from "../components/loader/Loader";
 import Error from "../components/error/Error";
 
-
+/**
+ * Sends data to the api, if success the VenueById component will be displayed. If error, an error message is displayed.
+ */
 export default function UseVenuesById() {
   const [venue, setVenue] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +22,6 @@ export default function UseVenuesById() {
       async function getVenue() {
         try {
           const response = await axios.get(API_URL);
-
           setVenue(response.data);
         } catch (error) {
           setError(error.toString());
@@ -48,8 +49,7 @@ export default function UseVenuesById() {
           <Venue />
         </>
       ) : (
-        setError(error),
-        <Error />
+        (setError(error), (<Error />))
       )}
     </>
   );

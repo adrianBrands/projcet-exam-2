@@ -11,7 +11,6 @@ const schema = yup.object().shape({
   name: yup.string().min(3).required(),
   email: yup.string().matches(emailRegex, "Invalid email.").required(),
   avatar: yup.string().url("invalid url").required(),
-  //venueManager: yup.boolean().oneOf([true]).notRequired(),
   password: yup.string().min(8).required(),
 });
 
@@ -29,6 +28,10 @@ avatar:
 password: 3848372hye373dnidh
 */
 
+/**
+ * displays a register form. When the form submits, sends the data to the api and if success, navigates the user
+ * to the sign in page, if an error occurs, displays an error message. 
+ */
 export default function RegisterUser() {
   const [submitting, setSubmitting] = useState(false);
   const [registerError, setRegisterError] = useState(null);
@@ -106,7 +109,7 @@ export default function RegisterUser() {
                   isInvalid={!!errors.avatar}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please provide a valid url, example: https://gravatar.com/avatar/600d2958102e1021b146af9e990ec390?s=400&d=robohash&r=x</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -128,7 +131,7 @@ export default function RegisterUser() {
               </FloatingLabel>
             </Form.Group>
             <Button variant="primary" type="submit">
-              {submitting ? "Signing in..." : "Register"}
+              {submitting ? "Registering..." : "Register"}
             </Button>
           </Form>
         </Container>

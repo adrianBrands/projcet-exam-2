@@ -13,7 +13,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 
 const URL = bookings + "?_customer=true&_venue=true";
-
+/**
+ * displays a functional calendar on the single venues page if there is a logged in user and the logged in user
+ * is not an owner of the specific venue.
+ * @param {data} bookings 
+ */
 export default function Calendar(bookings) {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -36,10 +40,6 @@ export default function Calendar(bookings) {
       }
     });
   }
-
-  const clicked = () => {
-    setDateRange([null, null]);
-  };
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("auth"));
@@ -113,7 +113,7 @@ export default function Calendar(bookings) {
 
   return (
     <>
-      <div>
+      <div className="mt-3">
         <p className="text-danger">{bookingError ? bookingError + " please try again" : null}</p>
       </div>
       <Form className="bookingForm d-flex align-items-center justify-content-center mt-3" onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -140,13 +140,13 @@ export default function Calendar(bookings) {
           <Form.Group className="d-flex mb-4 mt-md-1 align-items-center">
             <div>
               <Form.Label className="mb-2"></Form.Label>
-              <Form.Control placeholder="fromDate" type="text" value={startDateFormatted} className="me-4" disabled />
+              <Form.Control placeholder="from-date" type="text" value={startDateFormatted} className="me-4" disabled />
             </div>
 
             <span className="mx-3">-</span>
             <div>
               <Form.Label className="mb-2 "></Form.Label>
-              <Form.Control placeholder="toDate" type="text" value={endDateFormatted} disabled />
+              <Form.Control placeholder="to-date" type="text" value={endDateFormatted} disabled />
             </div>
           </Form.Group>
 

@@ -7,6 +7,12 @@ import Error from "../components/error/Error";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button } from "react-bootstrap";
 
+/**
+ * Sends data to the api, if success the AllVenues component will be displayed, and also the first
+ * 50 venues is loaded to the page. If the user scrolls down the next 50 will appear and at the end of the pge
+ * a scroll to top button is added. If error, an error message is displayed.
+ 
+ */
 export default function UseVenues() {
   const [venues, setVenues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

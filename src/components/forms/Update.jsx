@@ -15,6 +15,11 @@ const schema = yup.object().shape({
   //venueManager: yup.boolean().oneOf([true]).notRequired(),
 });
 
+/**
+ * displays an update form. sends the data to the api and if success, reloads the page.
+ * If an error occurs, displays an error message. 
+ * @param {Object} props  
+ */
 export default function Update(props) {
   const [submitting, setSubmitting] = useState(false);
   const [registerError, setRegisterError] = useState(null);

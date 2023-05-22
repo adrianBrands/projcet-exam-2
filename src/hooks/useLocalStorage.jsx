@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+/**
+ * Stores the ke and initial value to localStorage
+ * @param {String} key 
+ * @param {Object} initialValue  
+ */
 export function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
     try {

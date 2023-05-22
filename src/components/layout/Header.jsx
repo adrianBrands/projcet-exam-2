@@ -5,6 +5,10 @@ import { FaUserAlt } from "react-icons/fa";
 import LoggedIn from "../profile/IsLoggedIn";
 import { useEffect, useState } from "react";
 
+/**
+ * displays a navigation header with logo, and navigation links. If a user is logged in the profile image 
+ * is also displayed.
+ */
 export default function Header() {
   const [profileImage, setProfileImage] = useState([]);
   useEffect(() => {

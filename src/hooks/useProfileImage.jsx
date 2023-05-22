@@ -9,6 +9,11 @@ const schema = yup.object().shape({
   avatar: yup.string().url("invalid url").required(),
 });
 
+
+/**
+ * displays a update profile image form. When the form submits, sends the data to the api and if success, changes the users
+ * profile image, if an error occurs, displays an error message.
+ */
 export default function UseProfileImage() {
   const [submitting, setSubmitting] = useState(false);
   const [profile, setProfile] = useState([]);

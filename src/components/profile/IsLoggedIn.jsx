@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * checks if a user is logged in by retrieving values form local storage. 
+ */
 export default function IsLoggedIn() {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();

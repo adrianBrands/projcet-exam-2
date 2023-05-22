@@ -6,6 +6,11 @@ import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { PeopleFill } from "react-bootstrap-icons";
 
+/**
+ * displays the venues in cards with a width of 4 venues per line in full size screen. also comes with search 
+ * functionality, filtering the venues by their venue name.
+ * @param {data} venues  
+ */
 export default function AllVenues(venues) {
   const [search, setSearch] = useState("");
 

@@ -1,5 +1,6 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
+
 export default function Footer() {
   return (
     <div className="footer d-flex text-white  align-items-center">
