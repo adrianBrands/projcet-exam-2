@@ -19,7 +19,7 @@ export default function Home() {
           <Container>
             <h1 className="text-white fst-italic fw-normal stay">Stay once, carry memories forever...</h1>
             <Link to="/venues">
-              <Button size="lg" className="mt-3">
+              <Button size="lg" className="homeButton mt-3">
                 Find Your Stay
               </Button>
             </Link>

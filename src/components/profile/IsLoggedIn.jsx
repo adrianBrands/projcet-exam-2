@@ -32,8 +32,8 @@ export default function IsLoggedIn() {
   } else if (!items.name) {
     return (
       <Dropdown.Menu variant="dark">
-        <Dropdown.Item href="/Register">Register</Dropdown.Item>
-        <Dropdown.Item href="/Sign-in">Sign in</Dropdown.Item>
+        <Dropdown.Item data-cy="registerBn" className="registerBn" href="/Register">Register</Dropdown.Item>
+        <Dropdown.Item data-cy="signInBn" className="signInBn" href="/Sign-in">Sign in</Dropdown.Item>
       </Dropdown.Menu>
     );
   }

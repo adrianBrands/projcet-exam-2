@@ -40,7 +40,7 @@ export default function Header() {
         </Nav>
         <Nav className="me-3 align-items-center">
           <Dropdown className="dropstart">
-            <Dropdown.Toggle variant="" id="dropdown-basic">
+            <Dropdown.Toggle variant="" id="dropdown-basic" data-cy="profileImage" >
               {profileImage.avatar ? (
                 <img src={profileImage.avatar} className="rounded-circle" height={60} alt="" />
               ) : (

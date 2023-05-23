@@ -69,6 +69,7 @@ export default function SignInUser() {
                   onChange={handleChange}
                   isValid={touched.email && !errors.email}
                   isInvalid={!!errors.email}
+                  data-cy="signIn"
                 />
                 <Form.Control.Feedback type="invalid">Please provide a valid email address</Form.Control.Feedback>
               </FloatingLabel>
@@ -83,12 +84,13 @@ export default function SignInUser() {
                   onChange={handleChange}
                   isValid={touched.password && !errors.password}
                   isInvalid={!!errors.password}
+                  data-cy="signInPassword"
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">Please provide more then 8 characters</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" data-cy="signInButton">
               {submitting ? "Signing in..." : "Sign in"}
             </Button>
           </Form>
