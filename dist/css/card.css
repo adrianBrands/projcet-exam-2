@@ -1,0 +1,49 @@
+/*.card{
+  border: none;
+  --bs-card-spacer-y: 0;
+  --bs-card-spacer-x: 0;
+
+  & .card-footer{
+    padding: 0;
+    background-color: #fff;
+    border-top: none;
+
+  }
+
+  & .card-text:last-child {
+    margin-bottom: 1rem;
+  }
+}*/
+.venueLink {
+  text-decoration: none;
+  color: #000;
+}
+.venueLink:hover {
+  color: #000;
+}
+
+.venueCard {
+  position: relative;
+}
+.venueCard:hover {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.18) !important;
+  transform: scale(1.04);
+  transition: all 0.5s;
+}
+
+.productsLink {
+  text-decoration: none;
+  color: #fff;
+}
+.productsLink:hover {
+  color: #fff;
+  font-weight: bolder;
+}
+
+.avatar {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+  font-size: 22px;
+}/*# sourceMappingURL=card.css.map */

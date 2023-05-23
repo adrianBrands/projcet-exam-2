@@ -1,1 +1,48 @@
+//$primary:rgba(0, 0, 0, 0.3);
+$primary: #eb5555 ;
+//#eb5555 #379E9E
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+
+
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+}
+
+.btn-outline-primary:hover { 
+  --bs-btn-hover-color: #fff;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200&family=Caveat&display=swap');
+  font-family: 'Assistant', sans-serif;
+}
+
+
+.userIcon {
+  margin-bottom: 0;
+  font-size: 30px;
+}
+
+
+
+@import "react-datepicker/dist/react-datepicker-cssmodules.css";
+@import "react-datepicker/dist/react-datepicker.css";
+
+@import "./header.scss";
+@import "./footer.scss";
+@import "./background.scss";
+@import "./home.scss";
+@import "./card.scss";
+@import "./search.scss";
+@import "./carousel.scss";
+@import "./calendar.scss";
+@import "./map.scss";
+@import "./register.scss";
