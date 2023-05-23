@@ -95,7 +95,7 @@ export default function VenueById(data) {
               <div className="d-flex flex-wrap justify-content-between align-items-center text-secondary  mt-4">
                 <Card.Title className="fw-normal"> address: {location.address} </Card.Title>
                 <Card.Title className="fw-normal">country: {location.country}</Card.Title>
-                <Card.Title className="fw-normal"> address: {location.city} </Card.Title>
+                <Card.Title className="fw-normal"> city: {location.city} </Card.Title>
               </div>
             </Card.Body>
             <Card.Footer></Card.Footer>

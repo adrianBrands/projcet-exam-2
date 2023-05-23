@@ -3,9 +3,9 @@
 
 ## Project description
 
-A newly launched accommodation booking site called Holidaze has approached you to develop a brand new front end for their application. While they have a list of required features, the design and user experience has not been specified. Working with the official API documentation, plan, design and build a modern front end accommodation booking application.
+A newly launched accommodation booking site called Holidaze has approached you to develop a brand new front end for their application. While they have a list of required features, the design and user experience have not been specified. Working with the official API documentation, plan, design and build a modern front-end accommodation booking application.
 
-There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
+There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and the admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
 
 ## User Stories
@@ -52,3 +52,13 @@ npm i
 ```
 npm start 
 ```
+
+## End to End testing with Cypress
+
+To start tests created with Cypress, type the command: 
+
+```
+npx cypress open
+```
+
+Choose E2E testing and use Electron as the test browser, then click on a test file like signIn.cy.js. Finally, the test will run automatically.
