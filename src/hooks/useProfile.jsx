@@ -105,8 +105,8 @@ export default function UseBookings() {
             </Row>
           </div>
         ) : null}
-        <h2 className="mt-3 fw-lighter border-bottom">Your Bookings</h2>
-        <h3 className="fw-normal mb-4 fs-4">{bookings.bookings.length ? null : "You have 0 venues at the moment"}</h3>
+        <h2 className="mt-2 fw-lighter border-bottom">Your Bookings</h2>
+        <h3 className="fw-normal mb-5 fs-4">{bookings.bookings.length ? null : "You have 0 bookings at the moment"}</h3>
         <Row md={2} xs={1} lg={3} className="g-3 ">
           {bookings.bookings.map(({ id, dateFrom, dateTo, venue: { id: venueId, media, name, price, maxGuests } }) => (
             <Col className="mb-5" key={id}>
