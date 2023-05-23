@@ -1,7 +1,7 @@
 import { Container, Col, Row, Image, Card, Stack, Button, Carousel, CarouselItem } from "react-bootstrap";
 import defaultImage from "../../images/window-g12c04a259_1920.jpg";
 import { FaCar, FaDog, FaLaptopCode, FaUtensils } from "react-icons/fa";
-import Calendar from "../forms/Calendar";
+import Calendar from "../forms/Calenadrr";
 import Update from "../forms/Update";
 import { useState, useRef, useEffect } from "react";
 import UseDelete from "../../hooks/useDelete";
