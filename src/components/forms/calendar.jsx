@@ -2,7 +2,6 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { CALENDAR_OPTIONS } from "../../utilities/misc";
-import { AiOutlineClose } from "react-icons/ai";
 import * as yup from "yup";
 import { useParams } from "react-router-dom";
 import axios from "axios";
