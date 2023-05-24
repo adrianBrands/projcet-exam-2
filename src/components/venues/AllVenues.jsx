@@ -59,7 +59,7 @@ export default function AllVenues(venues) {
                 />
                 <Card.Body>
                   <Card.Title className="mb-3 fs-5 border-bottom">{name}</Card.Title>
-                  <img src={avatar} className="avatar rounded-circle" height={40} alt="" />
+                  <img src={avatar} className="avatar rounded-circle" height={40} width={40} alt="" />
                   <div className="d-flex mb-2  align-items-center justify-content-between">
                     <Card.Text className="mb-0">{price} kr NOK</Card.Text>
                     <Card.Text>

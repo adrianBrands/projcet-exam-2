@@ -42,7 +42,7 @@ export default function Header() {
           <Dropdown className="dropstart">
             <Dropdown.Toggle variant="" id="dropdown-basic" data-cy="profileImage" >
               {profileImage.avatar ? (
-                <img src={profileImage.avatar} className="rounded-circle" height={60} alt="" />
+                <img src={profileImage.avatar} className="rounded-circle" height={60} width={60} alt="" />
               ) : (
                 <FaUserAlt className="userIcon" />
               )}
