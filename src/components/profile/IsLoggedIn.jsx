@@ -26,7 +26,7 @@ export default function IsLoggedIn() {
     return (
       <Dropdown.Menu variant="dark">
         <Dropdown.Item href="/Profile">Profile</Dropdown.Item>
-        <Dropdown.Item onClick={removeItem}>Sign out</Dropdown.Item>
+        <Dropdown.Item data-cy="signOut" onClick={removeItem}>Sign out</Dropdown.Item>
       </Dropdown.Menu>
     );
   } else if (!items.name) {
