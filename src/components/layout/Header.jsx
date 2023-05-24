@@ -1,6 +1,6 @@
 import { Nav, Navbar, Dropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import Logo from "../../images/holidaze.png";
+import Logo from "../../images/HOLIDAZE-1.png";
 import { FaUserAlt } from "react-icons/fa";
 import LoggedIn from "../profile/IsLoggedIn";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className=" border-primary d-flex shadow-sm" sticky="top">
       <Navbar.Brand className="ms-3" href="/">
-        <img src={Logo} width="250" height="75" alt="holidaze logo" />
+        <img src={Logo} width="250" height="95" alt="holidaze logo" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="ms-3" id="responsive-navbar-nav">

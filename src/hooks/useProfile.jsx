@@ -130,7 +130,7 @@ export default function UseBookings() {
                         <PeopleFill /> {maxGuests}
                       </Card.Text>
                     </div>
-                    {newDate < moment(dateTo).format("DD/MM/YYYY") ? (
+                    { moment(dateTo).format("DD/MM/YYYY") < newDate  ? (
                       <div className="d-flex  align-items-center justify-content-between mt-3">
                         <Card.Text className="mb-0">From: {moment(dateFrom).format("DD/MM/YYYY")}</Card.Text>
                         <Card.Text>To: {moment(dateTo).format("DD/MM/YYYY")}</Card.Text>

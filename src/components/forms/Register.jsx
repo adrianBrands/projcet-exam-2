@@ -122,7 +122,7 @@ export default function RegisterUser() {
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">
-                  Please provide a valid url, example: https://gravatar.com/avatar/600d2958102e1021b146af9e990ec390?s=400&d=robohash&r=x
+                  Please provide a valid url
                 </Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
@@ -144,7 +144,7 @@ export default function RegisterUser() {
                 <Form.Control.Feedback type="invalid">Please provide more then 8 characters</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" className="mb-5" type="submit">
               {submitting ? "Registering..." : "Register"}
             </Button>
           </Form>
