@@ -15,7 +15,7 @@ const URL = bookings + "?_customer=true&_venue=true";
 /**
  * displays a functional calendar on the single venues page if there is a logged in user and the logged in user
  * is not an owner of the specific venue.
- * @param {data} bookings 
+ * @param {data} bookings
  */
 export default function Calendar(bookings) {
   const [submitting, setSubmitting] = useState(false);
@@ -112,9 +112,6 @@ export default function Calendar(bookings) {
 
   return (
     <>
-      <div className="mt-3">
-        <p className="text-danger">{bookingError ? bookingError + " please try again" : null}</p>
-      </div>
       <Form className="bookingForm d-flex align-items-center justify-content-center mt-3" onSubmit={handleSubmit(onSubmit)} noValidate>
         <fieldset disabled={error}>
           <div className="d-flex align-items-center justify-content-center">
@@ -135,20 +132,17 @@ export default function Calendar(bookings) {
               minDate={new Date()}
             />
           </div>
-
-          <Form.Group className="d-flex mb-4 mt-md-1 align-items-center">
+          <Form.Group className="d-flex mb-4 mt-md-1 justify-content-center align-items-center">
             <div>
               <Form.Label className="mb-2"></Form.Label>
               <Form.Control placeholder="from-date" type="text" value={startDateFormatted} className="me-4" disabled />
             </div>
-
             <span className="mx-3">-</span>
             <div>
               <Form.Label className="mb-2 "></Form.Label>
               <Form.Control placeholder="to-date" type="text" value={endDateFormatted} disabled />
             </div>
           </Form.Group>
-
           <Form.Group>
             <div>
               <Form.Label className="mb-2 "></Form.Label>
@@ -174,6 +168,11 @@ export default function Calendar(bookings) {
           )}
         </fieldset>
       </Form>
+      {bookingError ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <p className="text-danger w-50 ">{bookingError + " please try again"}</p>
+        </div>
+      ) : null}
     </>
   );
 }
