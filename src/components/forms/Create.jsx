@@ -65,7 +65,7 @@ export default function Create() {
         media: [""],
         price: "",
         maxGuests: "",
-        rating: "",
+        rating: 0,
         meta: {
           wifi: false,
           parking: false,
@@ -88,7 +88,7 @@ export default function Create() {
           <Form className="mt-3" noValidate onSubmit={handleSubmit}>
             <Row>
               <Form.Group as={Col} controlId="validationFormik01">
-                <FloatingLabel  controlId="floatingInputName" label="Name" className="mb-3">
+                <FloatingLabel controlId="floatingInputName" label="Name" className="mb-3">
                   <Form.Control
                     type="text"
                     placeholder="name"
@@ -117,39 +117,35 @@ export default function Create() {
                   <Form.Control.Feedback type="invalid">Please provide more then 3 characters</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
-
               <Form.Group>
-                
-                  <FieldArray type="url" placeholder="image"  name="media" value={values.media} onChange={handleChange}>
-                    {(fieldArrayProps) => {
-                      const { push, remove, form } = fieldArrayProps;
-                      const { values } = form;
-                      const { media } = values;
-                      return (
-                        <div>
-                          {media.map((image, index) => (
-                            <div key={index}>
-                              <Field placeholder="Image URL"  className="field" name={`media[${index}].name`} />
-                              {index > 0 && (
-                                <Button className="mb-3 remove" onClick={() => remove(index)}>
-                                  remove
-                                </Button>
-                              )}
-
-                              <Button className="mb-3 add" onClick={() => push("")}>
-                                add
+                <FieldArray type="url" placeholder="image" name="media" value={values.media} onChange={handleChange}>
+                  {(fieldArrayProps) => {
+                    const { push, remove, form } = fieldArrayProps;
+                    const { values } = form;
+                    const { media } = values;
+                    return (
+                      <div>
+                        {media.map((image, index) => (
+                          <div key={index}>
+                            <Field placeholder="Image URL" className="field" name={`media[${index}]`} />
+                            {index > 0 && (
+                              <Button className="mb-3 remove" onClick={() => remove(index)}>
+                                remove
                               </Button>
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    }}
-                  </FieldArray>
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
-                
-              </Form.Group>
+                            )}
 
+                            <Button className="mb-3 add" onClick={() => push("")}>
+                              add
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }}
+                </FieldArray>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
+              </Form.Group>
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputPrice" label="Price" className="mb-3">
                   <Form.Control
@@ -184,18 +180,9 @@ export default function Create() {
               </Form.Group>
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputRating" label="Rating" className="mb-3">
-                  <Form.Control
-                    type="number"
-                    placeholder="rating"
-                    name="rating"
-                    value={values.rating}
-                    onChange={handleChange}
-                    
-                  />
-                  
+                  <Form.Control type="number" placeholder="rating" name="rating" value={values.rating} onChange={handleChange} />
                 </FloatingLabel>
               </Form.Group>
-
               <Form.Group className="mb-3" controlId="formBasicCheckboxWifi">
                 <Form.Check type="checkbox" label="wifi" onChange={handleChange} value={values.meta.wifi} name="meta.wifi" />
               </Form.Group>
@@ -208,26 +195,19 @@ export default function Create() {
               <Form.Group className="mb-3" controlId="formBasicCheckboxPets">
                 <Form.Check type="checkbox" label="pets" onChange={handleChange} value={values.meta.pets} name="meta.pets" />
               </Form.Group>
-
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputAddress" label="address" className="mb-3">
                   <Form.Control type="text" placeholder="address" name="location.address" value={values.location.address} onChange={handleChange} />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid address</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputCity" label="city" className="mb-3">
                   <Form.Control type="text" placeholder="city" name="location.city" value={values.location.city} onChange={handleChange} />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid city</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputZip" label="zip" className="mb-3">
                   <Form.Control type="text" placeholder="zip" name="location.zip" value={values.location.zip} onChange={handleChange} />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid zip, 4 numbers</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
             </Row>
@@ -235,8 +215,6 @@ export default function Create() {
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputCountry" label="country" className="mb-3">
                   <Form.Control type="text" placeholder="country" name="location.country" value={values.location.country} onChange={handleChange} />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid country</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -248,22 +226,16 @@ export default function Create() {
                     value={values.location.continent}
                     onChange={handleChange}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid continent</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputLat" label="latitude" className="mb-3">
                   <Form.Control type="number" placeholder="latitude" name="location.lat" value={values.location.lat} onChange={handleChange} />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputLng" label="longitude" className="mb-3 text-body-secondary">
                   <Form.Control type="number" placeholder="longitude" name="location.lng" value={values.location.lng} onChange={handleChange} />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
             </Row>
