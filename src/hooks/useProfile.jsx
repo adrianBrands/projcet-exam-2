@@ -57,7 +57,7 @@ export default function UseBookings() {
     return <Error />;
   }
 
-  let newDate = moment().format("DD-MM-YYYY");
+  const today = moment().startOf("day");
 
   if (bookings.bookings) {
     return (
@@ -130,13 +130,14 @@ export default function UseBookings() {
                         <PeopleFill /> {maxGuests}
                       </Card.Text>
                     </div>
-                    { moment(dateTo).format("DD/MM/YYYY") < newDate  ? (
+
+                    {Date.parse(dateTo) < Date.parse(today) ? (
+                      <Card.Text className="text-danger fs-5">expired</Card.Text>
+                    ) : (
                       <div className="d-flex  align-items-center justify-content-between mt-3">
                         <Card.Text className="mb-0">From: {moment(dateFrom).format("DD/MM/YYYY")}</Card.Text>
                         <Card.Text>To: {moment(dateTo).format("DD/MM/YYYY")}</Card.Text>
                       </div>
-                    ) : (
-                      <Card.Text className="text-danger fs-5">expired</Card.Text>
                     )}
                   </Card.Body>
                   <Card.Footer className="d-flex justify-content-center align-items-center bg-primary">

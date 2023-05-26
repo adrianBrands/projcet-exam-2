@@ -1,6 +1,6 @@
 import { Nav, Navbar, Dropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import Logo from "../../images/HOLIDAZE-1.png";
+import Logo from "../../images/HOLIDAZE-2.png";
 import { FaUserAlt } from "react-icons/fa";
 import LoggedIn from "../profile/IsLoggedIn";
 import { useEffect, useState } from "react";

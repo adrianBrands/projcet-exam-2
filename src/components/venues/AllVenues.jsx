@@ -7,9 +7,9 @@ import { FaMapMarkedAlt } from "react-icons/fa";
 import { PeopleFill } from "react-bootstrap-icons";
 
 /**
- * displays the venues in cards with a width of 4 venues per line in full size screen. also comes with search 
+ * displays the venues in cards with a width of 4 venues per line in full size screen. also comes with search
  * functionality, filtering the venues by their venue name.
- * @param {data} venues  
+ * @param {data} venues
  */
 export default function AllVenues(venues) {
   const [search, setSearch] = useState("");
@@ -66,10 +66,17 @@ export default function AllVenues(venues) {
                       <PeopleFill /> {maxGuests}
                     </Card.Text>
                   </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <p className="text-secondary">{city}</p>
-                    <p className="text-secondary">{country}</p>
-                  </div>
+                  {city.length || country.length ? (
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p className="text-secondary">{city}</p>
+                      <p className="text-secondary">{country}</p>
+                    </div>
+                  ) : (
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p className="text-secondary">unknown</p>
+                      <p className="text-secondary">unknown</p>
+                    </div>
+                  )}
 
                   {location.lat !== 0 && location.lng !== 0 ? (
                     <Card.Text>
