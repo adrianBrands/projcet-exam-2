@@ -30,7 +30,7 @@ There are two aspects to this brief: the customer-facing side of the website whe
 
 ### Live site
 
--.......
+![Homepage Image](/src/images/Holidaze.jpg)
 
 ## Work with this project
 
