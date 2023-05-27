@@ -19,7 +19,7 @@ export default function Header() {
   }, []);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className=" border-primary d-flex shadow-sm" sticky="top">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className=" border-primary border-bottom border-2 d-flex shadow-sm" sticky="top">
       <Navbar.Brand className="ms-3" href="/">
         <img src={Logo} width="250" height="95" alt="holidaze logo" />
       </Navbar.Brand>
