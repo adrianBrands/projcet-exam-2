@@ -13,16 +13,9 @@ const schema = yup.object().shape({
   password: yup.string().min(8).required(),
 });
 
-/*testUser: 
-username: addyB
-email: addyB@noroff.no
-avatar: https://gravatar.com/avatar/63e0639bb8d217fe96e4f7c6ccb886b0?s=400&d=robohash&r=x
-password: 896734jdlmjd846h
-*/
-
 /**
  * displays a sign in form. When the form submits, sends the data to the api and if success, navigates the user
- * to the profile page, if an error occurs, displays an error message.  
+ * to the profile page, if an error occurs, displays an error message.
  */
 export default function SignInUser() {
   const [submitting, setSubmitting] = useState(false);
@@ -36,12 +29,10 @@ export default function SignInUser() {
 
     try {
       const response = await axios.post(signInURL, data);
-      console.log(response.data);
       setAuth(response.data);
       navigate("/profile");
       navigate(0);
     } catch (error) {
-      console.log("error", error.response.data.errors[0].message);
       setSignInError(error.response.data.errors[0].message.toString());
     } finally {
       setSubmitting(false);

@@ -14,7 +14,7 @@ import { PeopleFill } from "react-bootstrap-icons";
  * If a venue manager is the owner of the venue. A delete and update button is displayed, ans also the bookings for
  * the venue is added.
  * The will also be displayed, only if the logged in user is not the owner of the venue.
- * @param {Object} data 
+ * @param {Object} data
  */
 export default function VenueById(data) {
   const [isShown, setIsShown] = useState(false);
@@ -35,7 +35,6 @@ export default function VenueById(data) {
     bookings,
   } = data;
 
-  console.log(bookings);
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("auth"));
     if (items) {
@@ -61,7 +60,7 @@ export default function VenueById(data) {
       return (
         <div className="d-flex justify-content-evenly mb-5">
           <Button
-          size="lg"
+            size="lg"
             id="updateButton"
             onClick={() => {
               handleClick();
@@ -87,10 +86,10 @@ export default function VenueById(data) {
                 <img src={avatar} className="rounded-circle" height={50} width={50} alt="" />
               </div>
               <div className="mt-3">
-              <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
-              <Card.Title className="fw-normal">
-                <PeopleFill /> {maxGuests}
-              </Card.Title>
+                <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>
+                <Card.Title className="fw-normal">
+                  <PeopleFill /> {maxGuests}
+                </Card.Title>
               </div>
               <div className="d-flex flex-wrap justify-content-between align-items-center text-secondary  mt-4">
                 <Card.Title className="fw-normal"> address: {location.address} </Card.Title>
@@ -108,13 +107,15 @@ export default function VenueById(data) {
     }
     if (items.venueManager === true && ownerName === items.name) {
       return (
-        <Card className="mt-3">
+        <Card className="mt-3 mb-5">
           <Card.Body className="">
             <Card.Title className="fw-lighter mb-3 border-bottom">Bookings:</Card.Title>
             {bookings.map((booking) => {
               return (
                 <Container key={booking.id} className="d-flex justify-content-around">
-                  <Card.Text><PeopleFill/> {booking.guests}</Card.Text>
+                  <Card.Text>
+                    <PeopleFill /> {booking.guests}
+                  </Card.Text>
                   <Card.Text>from: {moment(booking.dateFrom).format("DD-MM-YYYY")}</Card.Text>
                   <Card.Text>to: {moment(booking.dateTo).format("DD-MM-YYYY")}</Card.Text>
                 </Container>

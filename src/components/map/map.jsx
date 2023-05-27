@@ -21,7 +21,7 @@ export default function Map(props) {
       />
       <Marker className="marker" position={[lat, lng]} icon={new Icon({iconUrl: markerIconPng, iconSize: [25, 41], iconAnchor: [12, 41]})}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          Venue location
         </Popup>
       </Marker>
     </MapContainer>

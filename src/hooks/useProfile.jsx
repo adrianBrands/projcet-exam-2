@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { profileURL } from "../utilities/constants";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import defaultImage from "../images/window-g12c04a259_1920.jpg";
 import { Link } from "react-router-dom";
-import { CALENDAR_OPTIONS } from "../utilities/misc";
 import moment from "moment";
 import Loader from "../components/loader/Loader";
 import Error from "../components/error/Error";

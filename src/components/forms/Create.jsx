@@ -2,7 +2,7 @@ import { Container, Form, Button, FloatingLabel, Col, Row } from "react-bootstra
 import * as yup from "yup";
 import { Field, Formik } from "formik";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { venuesURL } from "../../utilities/constants";
 import { FieldArray } from "formik";
@@ -43,11 +43,8 @@ export default function Create() {
             Authorization: `Bearer ${profile.accessToken}`,
           },
         });
-        console.log(response.data);
         navigate("/profile");
       } catch (error) {
-        console.log(error);
-        console.log("error", error.response.data.errors[0].message);
         setRegisterError(error.response.data.errors[0].message.toString());
       } finally {
         setSubmitting(false);
@@ -82,7 +79,7 @@ export default function Create() {
           lng: 0,
         },
       }}>
-      {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
+      {({ handleSubmit, handleChange,  values, touched, errors }) => (
         <Container className="mt-5 mb-5">
           <p className="text-danger fs-5">{registerError ? registerError + " please try again" : null}</p>
           <Form className="mt-3" noValidate onSubmit={handleSubmit}>

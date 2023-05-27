@@ -1,16 +1,18 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { venuesURL } from "../utilities/constants";
 import { useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import Error from "../components/error/Error";
 
 /**
- * Deletes a venue 
+ * Deletes a venue
  */
 export default function UseDelete() {
   const [submitting, setSubmitting] = useState(false);
   const [profile, setProfile] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const { id } = useParams();
   const API_URL = `${venuesURL}/${id}`;
@@ -35,8 +37,7 @@ export default function UseDelete() {
           },
         });
       } catch (error) {
-        console.log(error);
-        console.log("error", error.response.data.errors[0].message);
+        setIsError(true);
       } finally {
         setSubmitting(false);
         navigate("/profile");
@@ -49,13 +50,16 @@ export default function UseDelete() {
   };
 
   return (
+    <>
+    {isError ? <Error /> : null}
     <Button
-    size="lg"
+      size="lg"
       variant="outline-danger"
       onClick={() => {
         handleClickDelete();
       }}>
       Delete
     </Button>
+    </>
   );
 }

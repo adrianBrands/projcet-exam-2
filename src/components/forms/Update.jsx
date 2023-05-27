@@ -1,24 +1,15 @@
 import { Container, Form, Button, FloatingLabel, Col, Row } from "react-bootstrap";
-import * as yup from "yup";
 import { Field, Formik } from "formik";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { venuesURL } from "../../utilities/constants";
 import { FieldArray } from "formik";
 import { useParams } from "react-router-dom";
 
-const schema = yup.object().shape({
-  name: yup.string().min(3).required(),
-  description: yup.string().required(),
-  // media: yup.string().url("invalid url").required(),
-  //venueManager: yup.boolean().oneOf([true]).notRequired(),
-});
-
 /**
  * displays an update form. sends the data to the api and if success, reloads the page.
- * If an error occurs, displays an error message. 
- * @param {Object} props  
+ * If an error occurs, displays an error message.
+ * @param {Object} props
  */
 export default function Update(props) {
   const [submitting, setSubmitting] = useState(false);
@@ -48,10 +39,7 @@ export default function Update(props) {
             Authorization: `Bearer ${profile.accessToken}`,
           },
         });
-        console.log(response.data);
       } catch (error) {
-        console.log(error);
-        console.log("error", error.response.data.errors[0].message);
         setRegisterError(error.response.data.errors[0].message.toString());
       } finally {
         setSubmitting(false);
@@ -62,7 +50,6 @@ export default function Update(props) {
 
   return (
     <Formik
-      validationSchema={schema}
       onSubmit={onSubmit}
       initialValues={{
         name: name,
@@ -87,7 +74,7 @@ export default function Update(props) {
           lng: lng,
         },
       }}>
-      {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
+      {({ handleSubmit, handleChange, values, touched, errors }) => (
         <Container className="mt-5 mb-5">
           <p className="text-danger fs-5">{registerError ? registerError + " please try again" : null}</p>
           <Form className="mt-3" noValidate onSubmit={handleSubmit}>
@@ -103,8 +90,6 @@ export default function Update(props) {
                     isValid={touched.name && !errors.name}
                     isInvalid={!!errors.name}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide more then 3 characters</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -118,10 +103,8 @@ export default function Update(props) {
                     isValid={touched.description && !errors.description}
                     isInvalid={!!errors.description}
                   />
-                  <Form.Control.Feedback type="invalid">Please provide more then 3 characters</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
-
               <Form.Group>
                 <FloatingLabel controlId="floatingInputImage" label="" className="mb-3">
                   <FieldArray
@@ -156,11 +139,8 @@ export default function Update(props) {
                       );
                     }}
                   </FieldArray>
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
-
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputPrice" label="Venue price" className="mb-3">
                   <Form.Control
@@ -172,8 +152,6 @@ export default function Update(props) {
                     isValid={touched.price && !errors.price}
                     isInvalid={!!errors.price}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide a valid price</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -187,8 +165,6 @@ export default function Update(props) {
                     isValid={touched.maxGuests && !errors.maxGuests}
                     isInvalid={!!errors.maxGuests}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -202,11 +178,8 @@ export default function Update(props) {
                     isValid={touched.rating && !errors.rating}
                     isInvalid={!!errors.rating}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
-
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="wifi" onChange={handleChange} value={values.meta.wifi} name="meta.wifi" />
               </Form.Group>
@@ -219,7 +192,6 @@ export default function Update(props) {
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="pets" onChange={handleChange} value={values.meta.pets} name="meta.pets" />
               </Form.Group>
-
               <Form.Group as={Col}>
                 <FloatingLabel controlId="floatingInputRating" label="address" className="mb-3">
                   <Form.Control
@@ -231,8 +203,6 @@ export default function Update(props) {
                     isValid={touched.address && !errors.address}
                     isInvalid={!!errors.address}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -246,8 +216,6 @@ export default function Update(props) {
                     isValid={touched.city && !errors.city}
                     isInvalid={!!errors.city}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -261,8 +229,6 @@ export default function Update(props) {
                     isValid={touched.zip && !errors.zip}
                     isInvalid={!!errors.zip}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
             </Row>
@@ -278,8 +244,6 @@ export default function Update(props) {
                     isValid={touched.country && !errors.country}
                     isInvalid={!!errors.country}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group>
@@ -293,8 +257,6 @@ export default function Update(props) {
                     isValid={touched.continent && !errors.continent}
                     isInvalid={!!errors.continent}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -308,8 +270,6 @@ export default function Update(props) {
                     isValid={touched.lat && !errors.lat}
                     isInvalid={!!errors.lat}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col}>
@@ -323,8 +283,6 @@ export default function Update(props) {
                     isValid={touched.lng && !errors.lng}
                     isInvalid={!!errors.lng}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  <Form.Control.Feedback type="invalid">Please provide guests</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
             </Row>

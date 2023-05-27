@@ -3,12 +3,11 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import axios from "axios";
 import { profileURL } from "../utilities/constants";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const schema = yup.object().shape({
   avatar: yup.string().url("invalid url").required(),
 });
-
 
 /**
  * displays a update profile image form. When the form submits, sends the data to the api and if success, changes the users
@@ -29,22 +28,19 @@ export default function UseProfileImage() {
   async function onSubmit(data) {
     if (profile.name) {
       const imageUrl = profileURL + `/${profile.name}/media`;
-
       setSubmitting(true);
       setError(null);
-      console.log(imageUrl);
+
       try {
         const response = await axios.put(imageUrl, data, {
           headers: {
             Authorization: `Bearer ${profile.accessToken}`,
           },
         });
-        console.log(response.data.avatar);
         const storage = JSON.parse(localStorage.getItem("auth"));
         storage.avatar = response.data.avatar;
         localStorage.setItem("auth", JSON.stringify(storage));
       } catch (error) {
-        console.log("error", error.response.data.errors[0].message);
         setError(error.response.data.errors[0].message.toString());
       } finally {
         setSubmitting(false);
@@ -59,7 +55,7 @@ export default function UseProfileImage() {
       initialValues={{
         avatar: "",
       }}>
-      {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors, resetForm }) => (
+      {({ handleSubmit, handleChange, values, touched, errors }) => (
         <Container className="mt-3 mb-3">
           <p className="text-danger fs-5">{error ? error + " please try again" : null}</p>
           <Form className="mt-3" noValidate onSubmit={handleSubmit}>

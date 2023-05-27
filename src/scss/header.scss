@@ -1,21 +1,15 @@
-.navbar-toggler{
+.navbar-toggler {
   margin-right: 10px;
 }
 
-.navbar-nav{
-  /*--bs-nav-link-color: black;
-  --bs-navbar-hover-color: black*/
-}
-
-.btn#dropdown-basic{
+.btn#dropdown-basic {
   --bs-btn-border-color: none;
   --bs-btn-color: black;
   --bs-btn-padding-x: 0;
   --bs-btn-padding-y: 0;
-
 }
 
-.dropstart .dropdown-toggle::before{
+.dropstart .dropdown-toggle::before {
   content: none;
 }
 
@@ -23,6 +17,6 @@
   display: inline;
 }
 
-.navbar-nav .nav-link.active{
+.navbar-nav .nav-link.active {
   color: $primary;
 }

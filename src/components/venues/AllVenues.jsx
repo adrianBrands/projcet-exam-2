@@ -2,7 +2,6 @@ import { Container, Card, Form, Row, Col, Button } from "react-bootstrap";
 import defaultImage from "../../images/window-g12c04a259_1920.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { PeopleFill } from "react-bootstrap-icons";
 
@@ -39,7 +38,7 @@ export default function AllVenues(venues) {
   return (
     <Container className="pb-5">
       <Form className="mt-3">
-        <Form.Control type="search" placeholder="Search" className="me-2 searchForm" aria-label="Search" onChange={handleSubmit} value={search} />
+        <Form.Control type="search" id="search" placeholder="Search" className="me-2 searchForm" aria-label="Search" onChange={handleSubmit} value={search} />
         <DropDownSuggestions />
       </Form>
       <Row md={2} xs={1} lg={4} className="g-3 mt-1">
@@ -77,7 +76,6 @@ export default function AllVenues(venues) {
                       <p className="text-secondary">unknown</p>
                     </div>
                   )}
-
                   {location.lat !== 0 && location.lng !== 0 ? (
                     <Card.Text>
                       <FaMapMarkedAlt style={{ fontSize: "25px" }} />

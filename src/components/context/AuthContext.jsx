@@ -4,9 +4,8 @@ import React from "react";
 const AuthContext = React.createContext([null, () => {}]);
 
 /**
- * 
- * @param {*} props 
- * @returns 
+ * creates context and returns a context provider to store the values from useLocalStorage 
+ * @param {Object} props  
  */
 export function AuthProvider(props) {
   const [auth, setAuth] = useLocalStorage("auth", null);

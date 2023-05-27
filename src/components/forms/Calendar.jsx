@@ -79,21 +79,14 @@ export default function Calendar(bookings) {
       venueId: id,
     };
 
-    //console.log(data);
-    //console.log(token.accessToken);
-
     try {
       const response = await axios.post(URL, data, {
         headers: {
           Authorization: `Bearer ${token.accessToken}`,
         },
       });
-
-      //console.log(response.data);
-
       setSubmitted(true);
     } catch (error) {
-      console.log("error", error.response.data.errors[0].message);
       setBookingError(error.response.data.errors[0].message.toString());
     } finally {
       setSubmitting(false);
@@ -134,19 +127,19 @@ export default function Calendar(bookings) {
           </div>
           <Form.Group className="d-flex mb-4 mt-md-1 justify-content-center align-items-center">
             <div>
-              <Form.Label className="mb-2"></Form.Label>
-              <Form.Control placeholder="from-date" type="text" value={startDateFormatted} className="me-4" disabled />
+              <Form.Label htmlFor="fromDate"  className="mb-2"></Form.Label>
+              <Form.Control id="fromDate" placeholder="from-date" type="text" value={startDateFormatted} className="me-4" disabled />
             </div>
             <span className="mx-3">-</span>
             <div>
-              <Form.Label className="mb-2 "></Form.Label>
-              <Form.Control placeholder="to-date" type="text" value={endDateFormatted} disabled />
+              <Form.Label htmlFor="toDate" className="mb-2"></Form.Label>
+              <Form.Control id="toDate" placeholder="to-date" type="text" value={endDateFormatted} disabled />
             </div>
           </Form.Group>
           <Form.Group>
             <div>
-              <Form.Label className="mb-2 "></Form.Label>
-              <Form.Control placeholder="guests" type="number" {...register("guests")} />
+              <Form.Label htmlFor="guests" className="mb-2 "></Form.Label>
+              <Form.Control id="guests" placeholder="guests" type="number" {...register("guests")} />
             </div>
           </Form.Group>
           {token.accessToken ? (

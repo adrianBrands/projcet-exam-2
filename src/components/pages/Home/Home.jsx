@@ -1,6 +1,5 @@
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import background from "../../../images/china-gf98bd0a45_1920.jpg";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import React from "react";
 

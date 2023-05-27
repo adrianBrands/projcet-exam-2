@@ -14,20 +14,6 @@ const schema = yup.object().shape({
   password: yup.string().min(8).required(),
 });
 
-/*testUser venueManager:false: 
-username: addyB
-email: addyB@noroff.no
-avatar: https://gravatar.com/avatar/63e0639bb8d217fe96e4f7c6ccb886b0?s=400&d=robohash&r=x
-password: 896734jdlmjd846h
-*/
-
-/*testUser venueManager:true: 
-username: addyB123
-email: addyB123@noroff.no
-avatar: 
-password: 3848372hye373dnidh
-*/
-
 /**
  * displays a register form. When the form submits, sends the data to the api and if success, navigates the user
  * to the sign in page, if an error occurs, displays an error message.
@@ -45,12 +31,10 @@ export default function RegisterUser() {
 
     try {
       const response = await axios.post(authRegisterURL, data);
-      console.log(response.data);
-      if(response.data){
+      if (response.data) {
         setSuccess(true);
       }
     } catch (error) {
-      console.log("error", error.response.data.errors[0].message);
       setRegisterError(error.response.data.errors[0].message.toString());
       setSuccess(false);
     } finally {
@@ -121,9 +105,7 @@ export default function RegisterUser() {
                   isInvalid={!!errors.avatar}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                <Form.Control.Feedback type="invalid">
-                  Please provide a valid url
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please provide a valid url</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">

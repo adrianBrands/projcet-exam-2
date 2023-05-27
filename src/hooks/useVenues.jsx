@@ -30,7 +30,6 @@ export default function UseVenues() {
         const response = await axios.get(URLEndpoint);
         setVenues(response.data);
       } catch (error) {
-        console.log(error);
         setIsError(true);
       } finally {
         setIsLoading(false);
@@ -55,14 +54,10 @@ export default function UseVenues() {
     return AllVenues(venues.slice(0, limit));
   }
 
-  console.log(venues.slice(0, limit));
-
   const fetchData = () => {
-    console.log("hello");
     setLimit(limit + 10);
     if (limit === 100) {
       setHasMore(false);
-      console.log(false);
     }
   };
 
@@ -75,7 +70,6 @@ export default function UseVenues() {
     }, 500);
   };
 
-  //console.log(venues);
   if (venues) {
     return (
       <>
