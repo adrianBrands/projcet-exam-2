@@ -38,7 +38,15 @@ export default function AllVenues(venues) {
   return (
     <Container className="pb-5">
       <Form className="mt-3">
-        <Form.Control type="search" id="search" placeholder="Search" className="me-2 searchForm" aria-label="Search" onChange={handleSubmit} value={search} />
+        <Form.Control
+          type="search"
+          id="search"
+          placeholder="Search"
+          className="me-2 searchForm"
+          aria-label="Search"
+          onChange={handleSubmit}
+          value={search}
+        />
         <DropDownSuggestions />
       </Form>
       <Row md={2} xs={1} lg={4} className="g-3 mt-1">
@@ -58,7 +66,17 @@ export default function AllVenues(venues) {
                 />
                 <Card.Body>
                   <Card.Title className="mb-3 fs-5 border-bottom">{name}</Card.Title>
-                  <img src={avatar} className="avatar rounded-circle" height={40} width={40} alt="" />
+                  <img
+                    src={avatar !== 0 ? avatar : "https://gravatar.com/avatar/54437a82cb86e07a86880ef2533adc6f?s=400&d=robohash&r=x"}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "https://gravatar.com/avatar/54437a82cb86e07a86880ef2533adc6f?s=400&d=robohash&r=x;";
+                    }}
+                    className="avatar rounded-circle"
+                    height={40}
+                    width={40}
+                    alt="avatar"
+                  />
                   <div className="d-flex mb-2  align-items-center justify-content-between">
                     <Card.Text className="mb-0">{price} kr NOK</Card.Text>
                     <Card.Text>

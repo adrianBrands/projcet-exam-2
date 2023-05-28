@@ -83,7 +83,17 @@ export default function VenueById(data) {
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center">
                 <Card.Title>{ownerName}</Card.Title>
-                <img src={avatar} className="rounded-circle" height={50} width={50} alt="" />
+                <img
+                  src={avatar !== 0 ? avatar : "https://gravatar.com/avatar/54437a82cb86e07a86880ef2533adc6f?s=400&d=robohash&r=x"}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = "https://gravatar.com/avatar/54437a82cb86e07a86880ef2533adc6f?s=400&d=robohash&r=x;";
+                  }}
+                  className="rounded-circle"
+                  height={50}
+                  width={50}
+                  alt="avatar"
+                />
               </div>
               <div className="mt-3">
                 <Card.Title className="fw-normal">{price} kr NOK night</Card.Title>

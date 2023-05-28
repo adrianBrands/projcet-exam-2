@@ -33,7 +33,7 @@ export default function UseVenuesById() {
     },
     [API_URL]
   );
-  
+
   function Venue() {
     return VenueById(venue);
   }
