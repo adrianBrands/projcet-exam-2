@@ -62,7 +62,7 @@ export default function SignInUser() {
                   isInvalid={!!errors.email}
                   data-cy="signIn"
                 />
-                <Form.Control.Feedback type="invalid">Please provide a valid email address</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please provide a valid email address with: @stud.noroff.no</Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
             <Form.Group>
