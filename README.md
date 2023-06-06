@@ -1,5 +1,6 @@
 # Project Exam 2
 
+![Homepage Image](/src/images/Holidaze.jpg)
 
 ## Project description
 
@@ -8,29 +9,15 @@ A newly launched accommodation booking site called Holidaze has approached you t
 There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and the admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
 
-## User Stories
+## Built With
 
-- [x] A user may view a list of Venues
-- [x] A user may search for a specific Venue
-- [x] A user may view a specific Venue page by id
-- [x] A user may view a calendar with available dates for a Venue
-- [x] A user with a stud.noroff.no email may register as a customer
-- [x] A registered customer may create a booking at a Venue
-- [x] A registered customer may view their upcoming bookings
-- [x] A user with a stud.noroff.no email may register as a Venue manager
-- [x] A registered Venue manager may create a Venue
-- [x] A registered Venue manager may update a Venue they manage
-- [x] A registered Venue manager may delete a Venue they manage
-- [x] A registered Venue manager may view bookings for a Venue they manage
-- [x] A registered user may log-in
-- [x] A registered user may update their avatar
-- [x] A registered user may logout
+- [React.js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com)
+- [Sass](https://sass-lang.com/)
 
-## Project links
+## Live Site
 
-### Live site
-
-![Homepage Image](/src/images/Holidaze.jpg)
+[Live site](https://endearing-squirrel-90a49e.netlify.app/)
 
 ## Work with this project
 
